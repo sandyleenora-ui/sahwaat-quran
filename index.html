@@ -723,6 +723,42 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
   font-size:.86rem;font-weight:600;line-height:1.75;text-align:center;
   box-shadow:0 6px 22px rgba(10,25,18,.22)}
 .toast.bad{background:var(--no)}
+/* ---- مشغّل السورة ---- */
+.player{position:sticky;top:calc(56px + env(safe-area-inset-top,0px));z-index:20;
+  background:var(--card);border:1px solid var(--emerald);border-radius:14px;
+  padding:11px 13px;margin-bottom:14px;display:flex;flex-direction:column;gap:9px;
+  box-shadow:var(--shadow)}
+.player .prow{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+.player .now{font-size:.82rem;font-weight:700;color:var(--emerald);flex:1;min-width:0}
+.pbig{flex:1 1 150px;justify-content:center}
+.repsel{display:flex;gap:5px;flex-wrap:wrap;align-items:center}
+.repsel span{font-size:.78rem;color:var(--ink3);font-weight:600}
+.repsel button{background:var(--card2);border:1.4px solid var(--line2);color:var(--ink);
+  border-radius:9px;min-width:34px;padding:6px 8px;font:inherit;font-size:.82rem;
+  font-weight:700;cursor:pointer}
+.repsel button[aria-pressed="true"]{background:var(--emerald);border-color:var(--emerald);
+  color:var(--on-emerald)}
+.aitem.now>summary{background:var(--emerald-soft)}
+.aitem.now{border-inline-start:3px solid var(--emerald)}
+/* ---- مؤشر الصوت وقت التسجيل ---- */
+.meter{height:10px;border-radius:999px;background:var(--line);overflow:hidden;margin:2px 0 10px}
+.meter i{display:block;height:100%;width:0;background:var(--emerald);border-radius:999px;
+  transition:width .08s linear}
+.meter.on{background:var(--no-bg)}
+/* ---- شريط التابات: خمسة بس عشان يبقى مريح على الفون ---- */
+.tabs button{font-size:.72rem;padding:9px 2px 8px;gap:4px}
+.tabs button svg{width:22px;height:22px}
+.tabs button[aria-selected="true"]{background:var(--emerald-soft)}
+.confetti{position:fixed;inset:0;z-index:95;pointer-events:none}
+.addtask{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
+.addtask input{flex:1;min-width:0}
+.tk .tdel{flex:none;background:none;border:0;color:var(--ink3);cursor:pointer;font:inherit;
+  font-size:1.05rem;padding:2px 6px;line-height:1}
+.fadl{background:var(--emerald-soft);border-radius:14px;padding:15px 16px;margin-bottom:14px;
+  line-height:2.05;font-size:.88rem;color:var(--ink2)}
+.fadl .aya{font-family:var(--quran);font-size:1.12rem;line-height:2.3;color:var(--emerald);
+  display:block;margin:4px 0 2px}
+.fadl .src{font-size:.74rem;color:var(--ink3);font-weight:600}
 </style>
 
 <header class="top">
@@ -742,10 +778,8 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
   <section id="v-today"></section>
   <section id="v-browse" hidden></section>
   <section id="v-memo" hidden></section>
-  <section id="v-wird" hidden></section>
   <section id="v-dhikr" hidden></section>
   <section id="v-sahwa" hidden></section>
-  <section id="v-voice" hidden></section>
 </main>
 
 <audio id="player" preload="none" playsinline></audio>
@@ -765,15 +799,9 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
     <button type="button" data-tab="dhikr" aria-selected="false">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="2.1"/><circle cx="6.6" cy="10.4" r="2.1"/><circle cx="17.4" cy="10.4" r="2.1"/><circle cx="8.4" cy="16.4" r="2.1"/><circle cx="15.6" cy="16.4" r="2.1"/></svg>
       أذكار</button>
-    <button type="button" data-tab="voice" aria-selected="false">
-      <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg>
-      صوتي</button>
     <button type="button" data-tab="sahwa" aria-selected="false">
       <svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-7 13.3L4 20.5l3.8-1a8.5 8.5 0 1 0 4.2-16z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
       صحوة</button>
-    <button type="button" data-tab="wird" aria-selected="false">
-      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6M18.7 18.7l-1.6-1.6M6.9 6.9 5.3 5.3"/></svg>
-      وِردي</button>
   </div>
 </nav>
 
@@ -793,6 +821,15 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
       <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   </div></div>
   <div class="sheet-body"><div class="wrap" id="scopeBody"></div></div>
+</div>
+
+<div class="sheet" id="voiceSheet" hidden>
+  <div class="sheet-top"><div class="wrap">
+    <span class="sheet-title">صوتي</span>
+    <button class="x" type="button" data-close="voiceSheet" aria-label="إغلاق">
+      <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
+  </div></div>
+  <div class="sheet-body"><div class="wrap" id="v-voice"></div></div>
 </div>
 
 <div class="sheet" id="searchSheet" hidden>
@@ -863,7 +900,7 @@ const LS = "mutashabihat.v1";
 let S = { cards:{}, notes:{}, scope:{k:"all"}, day:{d:"",n:0}, streak:0, lastDay:"",
           theme:"auto", cb:false, surah:0, juz:0,
           memo:{all:true}, newPerDay:10, v:1,
-          wird:0, dh:{d:"",c:{}}, wd:{d:"",done:{},streak:0,full:""}, myDh:[],
+          wird:0, dh:{d:"",c:{}}, wd:{d:"",done:{},streak:0,full:""}, myDh:[], myTasks:[],
           chk:{s:{},j:{}}, plan:null };
 function applyPrefs(){
   const r=document.documentElement;
@@ -1746,6 +1783,41 @@ function audMsg(txt, bad){
   const e = $("#audMsg"); if(!e) return;
   e.textContent = txt; e.classList.toggle("bad", !!bad);
 }
+/* مؤشر بيوريكي إن الميكروفون شايف صوتك فعلًا */
+let MET = null;
+function startMeter(stream){
+  stopMeter();
+  try{
+    const AC = window.AudioContext || window.webkitAudioContext;
+    if(!AC) return;
+    const ac = new AC();
+    const an = ac.createAnalyser();
+    an.fftSize = 512;
+    ac.createMediaStreamSource(stream).connect(an);
+    const buf = new Uint8Array(an.fftSize);
+    MET = {ac, peak: 0, raf: 0};
+    const tick = () => {
+      if(!MET) return;
+      an.getByteTimeDomainData(buf);
+      let m = 0;
+      for(let i=0;i<buf.length;i++){ const v = Math.abs(buf[i]-128); if(v>m) m = v; }
+      const lvl = Math.min(100, Math.round(m / 60 * 100));
+      if(lvl > MET.peak) MET.peak = lvl;
+      const e = $("#micMeter>i");
+      if(e) e.style.width = lvl+"%";
+      MET.raf = requestAnimationFrame(tick);
+    };
+    tick();
+  }catch(e){ MET = null; }
+}
+function stopMeter(){
+  if(!MET) return 0;
+  const peak = MET.peak;
+  try{ cancelAnimationFrame(MET.raf); }catch(e){}
+  try{ MET.ac.close(); }catch(e){}
+  MET = null;
+  return peak;
+}
 let REC = null;
 async function recToggle(k){
   if(REC && REC.k === k){ REC.mr.stop(); return; }
@@ -1754,13 +1826,21 @@ async function recToggle(k){
   }
   try{
     const stream = await navigator.mediaDevices.getUserMedia({audio:true});
+    startMeter(stream);
     const mr = new MediaRecorder(stream);
     const chunks = [];
     mr.ondataavailable = e => { if(e.data && e.data.size) chunks.push(e.data); };
     mr.onstop = () => {
       stream.getTracks().forEach(t=>t.stop());
       const blob = new Blob(chunks, {type: mr.mimeType || "audio/webm"});
+      const peak = stopMeter();
       REC = null;
+      if(peak < 4){
+        audRefresh();
+        audMsg("الميكروفون ما التقطش أي صوت — اتأكدي إنه مش مكتوم، وإن المتصفح "
+             + "مسموحله يستخدمه، وقربي منه وإنتي بتقري.", true);
+        return;
+      }
       if(!blob.size){ audRefresh(); audMsg("ما اتسجّلش صوت — جرّبي تاني وقربي من الميك.", true); return; }
       audPutBlob("me", k, blob).then(err=>{
         audRefresh();
@@ -1947,6 +2027,12 @@ function planCard(){
 function memoHome(){
   const ready = dueCases().length + Math.min(newCases().length,10);
   return planCard()
+    + '<div class="card" style="margin-bottom:16px"><div class="row" '
+    + 'style="justify-content:space-between;gap:12px">'
+    + '<div style="flex:1;min-width:0"><b>صوتي</b>'
+    + '<div class="muted" style="font-size:.8rem;margin-top:2px">اسمعي الآية بصوت الشيخ، '
+    + "أو سجّلي بصوتك وارجعيلها.</div></div>"
+    + '<button class="btn ghost" type="button" id="openVoice">افتحيه</button></div></div>'
     + chkHTML()
     + (ready ? '<div class="card" style="margin-bottom:16px">'
       + '<div class="row" style="justify-content:space-between;gap:12px">'
@@ -2087,7 +2173,7 @@ function ayahRow(k, withRef){
     flags += '<span class="flag t-'+t+'">'+TYPE_AR[t]+"</span>");
   let body = '<div class="afull">'+esc(w.join(" "))+"<br>"+playBtn(k, true)+"</div>";
   if(cs.length) body += '<div class="awhere">'+whereHTML(k,cs)+"</div>";
-  return '<details class="aitem"><summary><span class="anum">'
+  return '<details class="aitem" data-k="'+k+'"><summary><span class="anum">'
     + (withRef ? esc(refAr(k)) : ar(ayno(k)))+"</span>"
     + '<span class="ahead">'+esc(head)+(w.length>4?" …":"")+"</span>"+flags
     + playBtn(k)
@@ -2144,6 +2230,7 @@ function surahMapHTML(n){
     + '" style="margin-bottom:14px">→ رجوع</button>'
     + '<div class="sur-head"><h1>'+esc(SU[n])+'<small>السورة '+ar(n)+"</small></h1>"
     + surahFacts(n) + openingHTML(n) + "</div>"
+    + '<div class="player" id="playBar"></div>'
     + '<h2 class="sec">آيات السورة</h2>'
     + '<div class="muted" style="margin-bottom:11px;line-height:1.8">مرتبة بصفحات المصحف. دوسي على أي آية تشوفيها كاملة وتشوفي مواضعها في المصحف كله ('
     + ar(tricky)+" موضع في السورة دي).</div>"
@@ -2164,35 +2251,29 @@ function render(){
   $("#v-today").hidden = tab!=="today";
   $("#v-browse").hidden = tab!=="browse";
   $("#v-memo").hidden = tab!=="memo";
-  $("#v-wird").hidden = tab!=="wird";
   $("#v-dhikr").hidden = tab!=="dhikr";
   $("#v-sahwa").hidden = tab!=="sahwa";
-  $("#v-voice").hidden = tab!=="voice";
   if(tab==="today") renderToday();
   if(tab==="browse") renderBrowse();
   if(tab==="memo") renderMemo();
-  if(tab==="wird") renderWird();
   if(tab==="dhikr") renderDhikr();
   if(tab==="sahwa") renderSahwa();
-  if(tab==="voice") renderVoice();
 }
 function renderMemo(){
   $("#v-memo").innerHTML = S.surah ? surahMapHTML(S.surah)
                          : S.juz   ? juzPage(S.juz)
                          : memoHome();
+  if($("#playBar")) seqBar();
 }
 function bkMsg(txt){
   const e=$("#bkMsg"); if(!e) return;
   e.textContent=txt; e.classList.add("on");
   clearTimeout(e._t); e._t=setTimeout(()=>e.classList.remove("on"),3000);
 }
-function openSettings(){
-  const seg=(name,opts,cur)=>'<div class="seg">'+opts.map(([v,l])=>
-    '<button type="button" data-set-'+name+'="'+v+'" aria-pressed="'+String(String(cur)===String(v))+'">'
-    + l+"</button>").join("")+"</div>";
-  const m = S.memo || {all:true}, mj=m.juz||[], ms=m.sur||[], mr=m.ranges||[];
-  $("#setBody").innerHTML =
-    '<div class="setrow"><div class="lbl"><b>المحفوظ بتاعي</b>'
+/* مُنتقي المحفوظ — بيتعرض في الإعدادات وفي تاب المراجعة كمان */
+function memoPickHTML(seg){
+  const m = S.memo || {all:true}, mj = m.juz||[], ms = m.sur||[], mr = m.ranges||[];
+  return '<div class="setrow"><div class="lbl"><b>المحفوظ بتاعي</b>'
     + '<small>المراجعة والتسميع بيتسحبوا من هنا بس. ده غير «نطاق التصفّح» اللي في الشريط فوق — '
     + "ده بيفلتر اللي بتشوفيه وهو بيحدد اللي بتتدربي عليه.</small></div>"
     + seg("memo",[["all","كل المصحف"],["pick","أحدد"]], m.all?"all":"pick")+"</div>"
@@ -2220,7 +2301,15 @@ function openSettings(){
             + "</span>").join("")+"</div>" : "")
         + '<div class="muted" id="memoNow" style="margin-top:11px;font-size:.78rem">المحفوظ دلوقتي: <b>'
         + esc(memoLabel())+"</b> — "+ar(CASES.filter(inMemo).length)+" موضع.</div>"
-        + "</div>")
+        + "</div>");
+}
+function openSettings(){
+  const seg=(name,opts,cur)=>'<div class="seg">'+opts.map(([v,l])=>
+    '<button type="button" data-set-'+name+'="'+v+'" aria-pressed="'+String(String(cur)===String(v))+'">'
+    + l+"</button>").join("")+"</div>";
+  const m = S.memo || {all:true}, mj=m.juz||[], ms=m.sur||[], mr=m.ranges||[];
+  $("#setBody").innerHTML =
+    memoPickHTML(seg)
     + '<div class="setrow"><div class="lbl"><b>مواضع جديدة في اليوم</b>'
     + '<small>كام موضع جديد يدخل مراجعتك كل يوم. صفر يعني مراجعة القديم بس.</small></div>'
     + seg("new",[["0","٠"],["5","٥"],["10","١٠"],["20","٢٠"]], S.newPerDay==null?10:S.newPerDay)+"</div>"
@@ -2299,6 +2388,8 @@ function memoTouch(){
   const mn=$("#memoNow");
   if(mn) mn.innerHTML = "المحفوظ دلوقتي: <b>"+esc(memoLabel())+"</b> — "
                       + ar(CASES.filter(inMemo).length)+" موضع.";
+  const mb=$("#memoBox>summary");
+  if(mb) mb.innerHTML = esc(memoLabel())+"<small>غيّريها</small>";
 }
 function hijri(){
   try{
@@ -2365,9 +2456,19 @@ const ADHKAR = [
     {id:"d9", nm:"ربنا اغفر لنا ولإخواننا", k:["59:10"], n:1}
   ]}
 ];
-const DHSRC = "نصوص الأذكار اللي مش قرآن مكتوبة من المشهور المتداول (زي حصن المسلم) — "
-  + "راجعيها من مصدرك المعتمد قبل ما توزّعيها على الحلقة. أي آية هنا بتتقرأ من "
-  + "بيانات المصحف المتحقَّقة اللي التطبيق كله شغّال عليها.";
+function fadlHTML(){
+  return '<div class="fadl">'
+    + "<b style=\"color:var(--ink)\">ليه الذكر؟</b>"
+    + '<span class="aya">'+esc(D.verses["13:28"][0].slice(-6).join(" "))+"</span>"
+    + '<span class="src">الرعد ٢٨</span>'
+    + '<span class="aya">'+esc(D.verses["2:152"][0].join(" "))+"</span>"
+    + '<span class="src">البقرة ١٥٢</span>'
+    + "<div style=\"margin-top:11px\">الذكر مش محتاج وضوء ولا وقت ولا مكان — تقدري تقوليه "
+    + "وإنتي ماشية أو بتشتغلي أو مستنية. وأسهل طريقة تداومي عليه إنك تربطيه بعادة عندك: "
+    + "بعد كل صلاة، في المواصلات، قبل ما تنامي.</div></div>";
+}
+const DHSRC = "الآيات اللي هنا بتتقرأ من بيانات المصحف المتحقَّقة. باقي الأذكار مكتوبة "
+  + "بصيغتها المشهورة؛ ولو عندك صيغة من مصدرك تحبيها، ضيفيها من «أضيفي ذكر» تحت.";
 
 function dhKeys(z){
   if(z.k) return z.k;
@@ -2441,6 +2542,8 @@ function wirdQuarter(){
 }
 function todayTasks(){
   const out = [], q = wirdQuarter();
+  (S.myTasks || []).forEach(x => out.push({id:"my:"+x.id, b:x.t,
+                                           s:"مهمة من عندك", del:x.id}));
   out.push({id:"read", b:"اقرئي الربع ده بصوت", s:rangeLabel(q.from,q.to)+" · الجزء "+ar(q.j),
             go:'data-wq="'+q.q+'"', gt:"الآيات"});
   const due = dailyQueue().length;
@@ -2456,6 +2559,39 @@ function todayTasks(){
   out.push({id:"slm", b:"صلّي على النبي ﷺ", s:"مية مرة على مدار اليوم",
             go:'data-wdh="z7"', gt:"عدّي"});
   return out;
+}
+/* احتفال صغير لما تخلّصي مهام اليوم */
+function boom(){
+  try{
+    if(matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    const c = document.createElement("canvas");
+    c.className = "confetti";
+    document.body.appendChild(c);
+    const x = c.getContext("2d");
+    const W = c.width = innerWidth, H = c.height = innerHeight;
+    const cols = ["#4E5A2C", "#C4A46A", "#8A6A2A", "#B6C47E", "#FBF8EF"];
+    const P = [];
+    for(let i=0;i<90;i++) P.push({
+      x: W/2 + (Math.random()-0.5)*W*0.6, y: H*0.62,
+      vx: (Math.random()-0.5)*9, vy: -7 - Math.random()*9,
+      g: 0.28 + Math.random()*0.14, s: 5 + Math.random()*7,
+      r: Math.random()*6.28, vr: (Math.random()-0.5)*0.3,
+      c: cols[(Math.random()*cols.length)|0]});
+    let t0 = performance.now();
+    const step = now => {
+      const dt = Math.min(34, now - t0)/16; t0 = now;
+      x.clearRect(0,0,W,H);
+      let alive = 0;
+      for(const p of P){
+        p.vy += p.g*dt; p.x += p.vx*dt; p.y += p.vy*dt; p.r += p.vr*dt;
+        if(p.y < H + 40) alive++;
+        x.save(); x.translate(p.x, p.y); x.rotate(p.r);
+        x.fillStyle = p.c; x.fillRect(-p.s/2, -p.s/2, p.s, p.s*0.6); x.restore();
+      }
+      if(alive) requestAnimationFrame(step); else c.remove();
+    };
+    requestAnimationFrame(step);
+  }catch(e){}
 }
 const taskFull = list => list.length>0 && list.every(x=>S.wd.done[x.id]);
 function taskMsg(list){
@@ -2482,14 +2618,18 @@ function tasksHTML(){
         + '<svg viewBox="0 0 24 24"><path d="m5 13 4.5 4.5L19 7"/></svg></button>'
         + '<div class="tb"><b>'+esc(x.b)+"</b><small>"+esc(x.s)+"</small></div>"
         + (x.go ? '<button class="btn ghost tgo" type="button" '+x.go+">"+esc(x.gt)+"</button>" : "")
+        + (x.del ? '<button class="tdel" type="button" data-tdel="'+esc(x.del)
+                   + '" aria-label="حذف المهمة">×</button>' : "")
         + "</div>").join("")
+    + '<div class="addtask"><input class="wfld" id="myTaskT" type="text" '
+    + 'placeholder="اكتبي مهمة من عندك…" aria-label="مهمة جديدة">'
+    + '<button class="btn ghost" type="button" id="myTaskAdd">أضيفي</button></div>'
     + '<div id="wdetail"></div></div>';
 }
 
-function renderWird(){
+function wirdHTML(){
   rollWird();
-  $("#v-wird").innerHTML =
-    msgHTML()
+  return msgHTML()
     + '<h2 class="sec">مهام النهاردة</h2>'
     + tasksHTML()
     + '<div class="card" style="margin-top:16px"><div class="row" '
@@ -2502,6 +2642,7 @@ function renderDhikr(){
   rollWird();
   $("#v-dhikr").innerHTML =
     '<h2 class="sec">الأذكار</h2>'
+    + fadlHTML()
     + '<div class="srcnote" style="margin-bottom:12px">'+esc(DHSRC)+"</div>"
     + '<div class="muted" style="font-size:.78rem;margin-bottom:11px;line-height:1.8">'
     + "دوسي على العدّاد كل مرة تقولي الذكر. لمّا يكمل العدد بيبقى أخضر، "
@@ -2634,6 +2775,7 @@ function wirePlayer(){
     $$(".pbtn.busy").forEach(b=>b.classList.remove("busy"));
     if(p.dataset.lbl) toast(p.dataset.lbl);
   });
+  p.addEventListener("ended", seqEnded);
   p.addEventListener("error", ()=>{
     $$(".pbtn.busy").forEach(b=>b.classList.remove("busy"));
     toast("ما قدرتش أجيب الصوت. اتأكدي إن في نت — ولو النت شغّال يبقى الموقع مقفول "
@@ -2686,7 +2828,7 @@ let vSur = 0, vAyah = 1;
 function vKey(){ return vSur+":"+vAyah; }
 function audRefresh(){
   if(L && !$("#learn").hidden) showLearn();
-  else if(tab === "voice") renderVoice();
+  else if(!$("#voiceSheet").hidden) renderVoice();
 }
 function vRow(k, kind){
   const w = D.verses[k][0];
@@ -2720,6 +2862,11 @@ function renderVoice(){
     + '<div class="audrow">'
       + '<button class="abtn'+(on?" rec":"")+'" type="button" data-arec="'+k+'">'
         + '<span class="dot"></span>'+(on?"وقّفي التسجيل":"سجّلي صوتك")+"</button>"
+      + (on ? "" : "")
+    + "</div>"
+    + (on ? '<div class="meter on" id="micMeter"><i></i></div>'
+          : "")
+    + '<div class="audrow">'
       + (audHas("me",k) ? '<button class="abtn" type="button" data-aplay="me:'+k+'">▶ صوتي</button>'
           + '<button class="abtn" type="button" data-adel="me:'+k+'">مسح</button>' : "")
       + (audHas("sh",k) ? '<button class="abtn" type="button" data-aplay="sh:'+k+'">▶ صوت الشيخ</button>'
@@ -2755,10 +2902,85 @@ function renderVoice(){
     + '<div class="sahnote">التسجيلات بتاخد مساحة من جهازك. لو حسّيتي إن المساحة قلّت، '
     + "امسحي اللي خلصتي منه من الزرار اللي جنب كل تسجيل.</div>";
 }
+/* ============================================ قراءة السورة كاملة
+   بتقرا آية ورا آية، وبتحدّد الآية اللي بتتقرا دلوقتي، وتقدري تخلّي كل آية
+   تتكرّر كذا مرة قبل ما تعدّي — ده أنفع حاجة في الحفظ. */
+let PLAY = null;
+const repN = () => S.repeatN || 1;
+
+function ayahSrc(k){
+  if(audHas("sh", k)) return audSrc("sh", k) || ayahURL(k);
+  if(audHas("me", k)) return audSrc("me", k) || ayahURL(k);
+  return ayahURL(k);
+}
+function markNow(k){
+  $$(".aitem.now").forEach(e=>e.classList.remove("now"));
+  if(!k) return;
+  const el = $('.aitem[data-k="'+k+'"]');
+  if(el){
+    el.classList.add("now");
+    const r = el.getBoundingClientRect();
+    if(r.top < 120 || r.bottom > innerHeight - 90)
+      window.scrollTo({top: r.top + scrollY - 160, behavior:"smooth"});
+  }
+}
+function seqBar(){
+  const b = $("#playBar"); if(!b) return;
+  const on = !!PLAY;
+  b.innerHTML =
+    '<div class="prow">'
+    + (on ? '<span class="now">بتقرا دلوقتي: '+esc(refAr(PLAY.keys[PLAY.i]))
+            + (repN()>1 ? " · مرة "+ar(PLAY.rep+1)+" من "+ar(repN()) : "")+"</span>"
+          : '<span class="now">اقري السورة كلها بصوت '+esc(reciterName())+"</span>")
+    + "</div><div class=\"prow\">"
+    + (on ? '<button class="btn pbig" type="button" id="seqStop">إيقاف</button>'
+            + '<button class="btn ghost" type="button" id="seqNext">الآية اللي بعدها ⏭</button>'
+          : '<button class="btn pbig" type="button" id="seqGo">▶ اقري السورة</button>')
+    + "</div>"
+    + '<div class="repsel"><span>كرري كل آية:</span>'
+    + [1,3,5,7,10].map(n=>'<button type="button" data-rep="'+n+'" aria-pressed="'
+        + String(n===repN())+'">'+ar(n)+"</button>").join("")+"</div>";
+}
+function seqStart(keys, i){
+  PLAY = {keys, i: i||0, rep: 0};
+  wirePlayer();
+  seqPlayNow();
+}
+function seqPlayNow(){
+  if(!PLAY) return;
+  const k = PLAY.keys[PLAY.i];
+  if(!k){ seqStop(); return; }
+  markNow(k);
+  seqBar();
+  playSrc(ayahSrc(k), "", "ما قدرتش أشغّل الآية — اتأكدي من النت.");
+}
+function seqNext(){
+  if(!PLAY) return;
+  PLAY.rep = 0;
+  PLAY.i++;
+  if(PLAY.i >= PLAY.keys.length){ toast("خلصت السورة ✓"); seqStop(); return; }
+  seqPlayNow();
+}
+function seqEnded(){
+  if(!PLAY) return;
+  PLAY.rep++;
+  if(PLAY.rep < repN()){ seqPlayNow(); return; }
+  PLAY.rep = 0;
+  PLAY.i++;
+  if(PLAY.i >= PLAY.keys.length){ toast("خلصت السورة ✓"); seqStop(); return; }
+  seqPlayNow();
+}
+function seqStop(){
+  PLAY = null;
+  try{ player().pause(); }catch(e){}
+  markNow(null);
+  seqBar();
+}
 function renderSahwa(){
   const n = (daySeed() + (S.cheer||0)) % CHEERS.length;
   $("#v-sahwa").innerHTML =
-    '<div class="sah"><div class="hi">أهلًا بيكِ 🌿</div>'
+    wirdHTML()
+    + '<div class="sah" style="margin-top:18px"><div class="hi">أهلًا بيكِ 🌿</div>'
     + '<div class="st">'+sahwaState()+"</div>"
     + '<div class="cheer" id="cheerBox">'+esc(CHEERS[n])+"</div>"
     + '<div class="row"><button class="btn ghost" type="button" id="cheerNext">كلمة تانية</button>'
@@ -2803,6 +3025,14 @@ function renderToday(){
       + (ready? "ابدئي المراجعة" : "مفيش مراجعة مستحقة")+"</button>"
     + (ready? "" : '<button class="btn ghost block" id="goFree" type="button">درّبيني بره الحساب</button>')
     + "</div>"
+    + '<h2 class="sec">بتراجعي من فين؟</h2>'
+    + '<details class="dgrp" id="memoBox" style="margin-bottom:16px"><summary>'
+    + esc(memoLabel())+"<small>غيّريها</small></summary>"
+    + '<div style="padding:13px 15px">'
+    + memoPickHTML((name,opts,cur)=>'<div class="seg">'+opts.map(([v,l])=>
+        '<button type="button" data-set-'+name+'="'+v+'" aria-pressed="'
+        + String(String(cur)===String(v))+'">'+l+"</button>").join("")+"</div>")
+    + "</div></details>"
     + '<h2 class="sec">تسميع</h2><div class="card">'
     + '<div class="row" style="justify-content:space-between;gap:12px">'
     + '<div style="flex:1;min-width:0"><b>كمّلي الآية · وإيه اللي بعدها</b>'
@@ -3136,7 +3366,7 @@ document.addEventListener("click", e=>{
   if(rc){ S.reciter = rc.dataset.rec; save();
           $$("[data-rec]").forEach(b=>b.setAttribute("aria-pressed",
             String(b.dataset.rec===S.reciter)));
-          if(tab === "voice") renderVoice();
+          if(!$("#voiceSheet").hidden) renderVoice();
           toast("القارئ بقى "+reciterName());
           return; }
   const th = t.closest("[data-set-theme]");
@@ -3162,6 +3392,21 @@ document.addEventListener("click", e=>{
            S.memoSet=true; save();
            msr.setAttribute("aria-pressed", String(at<0));
            memoTouch(); return; }
+
+  /* ---- قراءة السورة ---- */
+  const rp = t.closest("[data-rep]");
+  if(rp){ S.repeatN = +rp.dataset.rep; save();
+          $$("[data-rep]").forEach(b=>b.setAttribute("aria-pressed",
+            String(+b.dataset.rep===S.repeatN)));
+          if(PLAY) seqBar();
+          return; }
+  if(t.closest("#seqGo")){
+    const ks = $$(".aitem[data-k]").map(e=>e.dataset.k);
+    if(ks.length) seqStart(ks, 0);
+    return;
+  }
+  if(t.closest("#seqStop")){ seqStop(); return; }
+  if(t.closest("#seqNext")){ seqNext(); return; }
 
   /* ---- الصوت ---- */
   const ar_ = t.closest("[data-arec]");
@@ -3195,6 +3440,9 @@ document.addEventListener("click", e=>{
   }
 
   /* ---- البحث والصحوة ---- */
+  if(t.closest("#openVoice")){
+    $("#voiceSheet").hidden=false; renderVoice(); return;
+  }
   if(t.closest("#searchBtn")){
     $("#searchSheet").hidden=false; renderSearch();
     const i=$("#q"); if(i) setTimeout(()=>i.focus(), 60);
@@ -3411,14 +3659,29 @@ document.addEventListener("click", e=>{
     return;
   }
   const dd = t.closest("[data-dhdel]");
-  if(dd){ S.myDh = (S.myDh||[]).filter(z=>z.id!==dd.dataset.dhdel); save(); renderWird(); return; }
+  if(dd){ S.myDh = (S.myDh||[]).filter(z=>z.id!==dd.dataset.dhdel); save(); renderDhikr(); return; }
   if(t.closest("#dhAdd")){
     const nm = ($("#dhNm").value||"").trim(), tx = ($("#dhT").value||"").trim();
     const n = Math.max(1, Math.min(1000, +$("#dhN").value||1));
     if(!tx){ $("#dhT").focus(); return; }
     S.myDh = (S.myDh||[]).concat([{id:"u"+Date.now().toString(36), u:1,
                                    nm:nm||tx.slice(0,22), t:tx, n:n}]);
-    save(); renderWird(); return;
+    save(); renderDhikr();
+    toast("اتضاف لأذكارك ✓");
+    return;
+  }
+  if(t.closest("#myTaskAdd")){
+    const v = ($("#myTaskT").value||"").trim();
+    if(!v){ $("#myTaskT").focus(); return; }
+    S.myTasks = (S.myTasks||[]).concat([{id:"t"+Date.now().toString(36), t:v}]);
+    save(); renderSahwa(); toast("اتضافت ✓");
+    return;
+  }
+  const td = t.closest("[data-tdel]");
+  if(td){
+    S.myTasks = (S.myTasks||[]).filter(x=>x.id!==td.dataset.tdel);
+    delete S.wd.done["my:"+td.dataset.tdel];
+    save(); renderSahwa(); return;
   }
   const tkb = t.closest("[data-task]");
   if(tkb){
@@ -3430,6 +3693,8 @@ document.addEventListener("click", e=>{
       const prev = S.wd.full, y = localDay(Date.now()-DAY);
       S.wd.streak = (prev===y) ? (S.wd.streak||0)+1 : 1;
       S.wd.full = localDay();
+      boom();
+      toast("تمام! خلّصتِ مهام النهاردة كلها 🎉");
     }
     save();
     tkb.closest(".tk").classList.toggle("on", on);
