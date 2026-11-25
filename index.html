@@ -746,8 +746,9 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
   transition:width .08s linear}
 .meter.on{background:var(--no-bg)}
 /* ---- شريط التابات: خمسة بس عشان يبقى مريح على الفون ---- */
-.tabs button{font-size:.72rem;padding:9px 2px 8px;gap:4px}
-.tabs button svg{width:22px;height:22px}
+.tabs button{font-size:.63rem;padding:8px 0 7px;gap:3px;letter-spacing:-.01em}
+.tabs button svg{width:20px;height:20px}
+.tabs .wrap{padding-inline:4px}
 .tabs button[aria-selected="true"]{background:var(--emerald-soft)}
 .confetti{position:fixed;inset:0;z-index:95;pointer-events:none}
 .addtask{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
@@ -779,7 +780,9 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
   <section id="v-browse" hidden></section>
   <section id="v-memo" hidden></section>
   <section id="v-dhikr" hidden></section>
+  <section id="v-voice" hidden></section>
   <section id="v-sahwa" hidden></section>
+  <section id="v-wird" hidden></section>
 </main>
 
 <audio id="player" preload="none" playsinline></audio>
@@ -799,9 +802,15 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
     <button type="button" data-tab="dhikr" aria-selected="false">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="7" r="2.1"/><circle cx="6.6" cy="10.4" r="2.1"/><circle cx="17.4" cy="10.4" r="2.1"/><circle cx="8.4" cy="16.4" r="2.1"/><circle cx="15.6" cy="16.4" r="2.1"/></svg>
       أذكار</button>
+    <button type="button" data-tab="voice" aria-selected="false">
+      <svg viewBox="0 0 24 24"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5.5 11.5a6.5 6.5 0 0 0 13 0M12 18v3"/></svg>
+      صوتي</button>
     <button type="button" data-tab="sahwa" aria-selected="false">
       <svg viewBox="0 0 24 24"><path d="M12 3.5a8.5 8.5 0 0 0-7 13.3L4 20.5l3.8-1a8.5 8.5 0 1 0 4.2-16z"/><path d="M9 11h.01M12 11h.01M15 11h.01"/></svg>
       صحوة</button>
+    <button type="button" data-tab="wird" aria-selected="false">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6M18.7 18.7l-1.6-1.6M6.9 6.9 5.3 5.3"/></svg>
+      وِردي</button>
   </div>
 </nav>
 
@@ -821,15 +830,6 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
       <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
   </div></div>
   <div class="sheet-body"><div class="wrap" id="scopeBody"></div></div>
-</div>
-
-<div class="sheet" id="voiceSheet" hidden>
-  <div class="sheet-top"><div class="wrap">
-    <span class="sheet-title">صوتي</span>
-    <button class="x" type="button" data-close="voiceSheet" aria-label="إغلاق">
-      <svg viewBox="0 0 24 24"><path d="m6 6 12 12M18 6 6 18"/></svg></button>
-  </div></div>
-  <div class="sheet-body"><div class="wrap" id="v-voice"></div></div>
 </div>
 
 <div class="sheet" id="searchSheet" hidden>
@@ -2252,12 +2252,16 @@ function render(){
   $("#v-browse").hidden = tab!=="browse";
   $("#v-memo").hidden = tab!=="memo";
   $("#v-dhikr").hidden = tab!=="dhikr";
+  $("#v-voice").hidden = tab!=="voice";
   $("#v-sahwa").hidden = tab!=="sahwa";
+  $("#v-wird").hidden = tab!=="wird";
   if(tab==="today") renderToday();
   if(tab==="browse") renderBrowse();
   if(tab==="memo") renderMemo();
   if(tab==="dhikr") renderDhikr();
+  if(tab==="voice") renderVoice();
   if(tab==="sahwa") renderSahwa();
+  if(tab==="wird") renderWird();
 }
 function renderMemo(){
   $("#v-memo").innerHTML = S.surah ? surahMapHTML(S.surah)
@@ -2828,7 +2832,7 @@ let vSur = 0, vAyah = 1;
 function vKey(){ return vSur+":"+vAyah; }
 function audRefresh(){
   if(L && !$("#learn").hidden) showLearn();
-  else if(!$("#voiceSheet").hidden) renderVoice();
+  else if(tab === "voice") renderVoice();
 }
 function vRow(k, kind){
   const w = D.verses[k][0];
@@ -2844,7 +2848,11 @@ function renderVoice(){
   }
   if(vAyah > SC[vSur]) vAyah = 1;
   const k = vKey(), on = REC && REC.k === k;
-  const mine = audKeys("me"), shs = audKeys("sh");
+  const sameSur = x => +x.split(":")[0] === vSur;
+  const allMine = audKeys("me"), allShs = audKeys("sh");
+  const only = S.vOnly !== false;        /* افتراضيًا نوري السورة المختارة بس */
+  const mine = only ? allMine.filter(sameSur) : allMine;
+  const shs  = only ? allShs.filter(sameSur) : allShs;
   $("#v-voice").innerHTML =
     '<h2 class="sec">اسمعي وسجّلي</h2>'
     + '<div class="card" style="margin-bottom:18px">'
@@ -2892,11 +2900,17 @@ function renderVoice(){
     + (S.plan ? '<button class="abtn" type="button" id="grabWird">نزّلي صوت ورد النهاردة</button>' : "")
     + '<button class="abtn" type="button" id="grabSur">نزّلي صوت '+esc(SU[vSur])+"</button></div>"
     + '<div class="audmsg" id="grabMsg"></div></div>'
+    + '<div class="chips" style="margin-bottom:11px">'
+    + [[1,"سورة "+SU[vSur]],[0,"كل السور"]].map(([v,l])=>
+        '<button class="chip" type="button" data-vonly="'+v+'" aria-pressed="'
+        + String(!!v===only)+'">'+esc(l)+"</button>").join("")+"</div>"
     + '<h2 class="sec">تسجيلاتي'+(mine.length?" — "+ar(mine.length):"")+"</h2>"
     + (mine.length ? '<div class="vlist" style="margin-bottom:18px">'
         + mine.map(x=>vRow(x,"me")).join("")+"</div>"
-      : '<div class="vempty" style="margin-bottom:18px">لسه ما سجّلتيش حاجة.<br>'
-        + "اختاري آية فوق ودوسي «سجّلي صوتك».</div>")
+      : '<div class="vempty" style="margin-bottom:18px">'
+        + (only && allMine.length ? "مفيش تسجيلات في سورة "+esc(SU[vSur])
+             + " — دوسي «كل السور» فوق عشان تشوفي الباقي."
+             : "لسه ما سجّلتيش حاجة.<br>اختاري آية فوق ودوسي «سجّلي صوتك».")+"</div>")
     + (shs.length ? '<h2 class="sec">ملفات الشيوخ — '+ar(shs.length)+"</h2>"
         + '<div class="vlist">'+shs.map(x=>vRow(x,"sh")).join("")+"</div>" : "")
     + '<div class="sahnote">التسجيلات بتاخد مساحة من جهازك. لو حسّيتي إن المساحة قلّت، '
@@ -2976,11 +2990,13 @@ function seqStop(){
   markNow(null);
   seqBar();
 }
+function renderWird(){
+  $("#v-wird").innerHTML = wirdHTML();
+}
 function renderSahwa(){
   const n = (daySeed() + (S.cheer||0)) % CHEERS.length;
   $("#v-sahwa").innerHTML =
-    wirdHTML()
-    + '<div class="sah" style="margin-top:18px"><div class="hi">أهلًا بيكِ 🌿</div>'
+    '<div class="sah"><div class="hi">أهلًا بيكِ 🌿</div>'
     + '<div class="st">'+sahwaState()+"</div>"
     + '<div class="cheer" id="cheerBox">'+esc(CHEERS[n])+"</div>"
     + '<div class="row"><button class="btn ghost" type="button" id="cheerNext">كلمة تانية</button>'
@@ -3366,7 +3382,7 @@ document.addEventListener("click", e=>{
   if(rc){ S.reciter = rc.dataset.rec; save();
           $$("[data-rec]").forEach(b=>b.setAttribute("aria-pressed",
             String(b.dataset.rec===S.reciter)));
-          if(!$("#voiceSheet").hidden) renderVoice();
+          if(tab === "voice") renderVoice();
           toast("القارئ بقى "+reciterName());
           return; }
   const th = t.closest("[data-set-theme]");
@@ -3440,9 +3456,7 @@ document.addEventListener("click", e=>{
   }
 
   /* ---- البحث والصحوة ---- */
-  if(t.closest("#openVoice")){
-    $("#voiceSheet").hidden=false; renderVoice(); return;
-  }
+  if(t.closest("#openVoice")){ tab="voice"; render(); window.scrollTo(0,0); return; }
   if(t.closest("#searchBtn")){
     $("#searchSheet").hidden=false; renderSearch();
     const i=$("#q"); if(i) setTimeout(()=>i.focus(), 60);
@@ -3513,6 +3527,8 @@ document.addEventListener("click", e=>{
           cs.className="cbtn s"+v; cs.textContent=CHK_S[v];
           cs.closest(".srow").dataset.st=String(v);
           chkTouch(); return; }
+  const vo = t.closest("[data-vonly]");
+  if(vo){ S.vOnly = vo.dataset.vonly === "1"; save(); renderVoice(); return; }
   const cf = t.closest("[data-cfilter]");
   if(cf){ chkFilter=cf.dataset.cfilter;
           $$("[data-cfilter]").forEach(b=>b.setAttribute("aria-pressed",
@@ -3674,14 +3690,14 @@ document.addEventListener("click", e=>{
     const v = ($("#myTaskT").value||"").trim();
     if(!v){ $("#myTaskT").focus(); return; }
     S.myTasks = (S.myTasks||[]).concat([{id:"t"+Date.now().toString(36), t:v}]);
-    save(); renderSahwa(); toast("اتضافت ✓");
+    save(); renderWird(); toast("اتضافت ✓");
     return;
   }
   const td = t.closest("[data-tdel]");
   if(td){
     S.myTasks = (S.myTasks||[]).filter(x=>x.id!==td.dataset.tdel);
     delete S.wd.done["my:"+td.dataset.tdel];
-    save(); renderSahwa(); return;
+    save(); renderWird(); return;
   }
   const tkb = t.closest("[data-task]");
   if(tkb){
