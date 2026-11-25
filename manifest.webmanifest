@@ -1,6 +1,6 @@
 {
-  "name": "متشابهات المصحف",
-  "short_name": "متشابهات",
+  "name": "صحوة",
+  "short_name": "صحوة",
   "description": "تطبيق يسهّل حفظ القرآن: المتشابهات والمتطابقات في المصحف كله، مراجعة يومية، تسميع، وورد وأذكار.",
   "lang": "ar",
   "dir": "rtl",
@@ -9,8 +9,8 @@
   "scope": "./",
   "display": "standalone",
   "orientation": "portrait",
-  "background_color": "#eceeea",
-  "theme_color": "#0d6b4c",
+  "background_color": "#EFEDE0",
+  "theme_color": "#4E5A2C",
   "categories": ["education", "books"],
   "icons": [
     { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },

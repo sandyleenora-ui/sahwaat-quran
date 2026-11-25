@@ -5,21 +5,21 @@
 <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
 <meta name="description" content="تطبيق يسهّل حفظ القرآن: المتشابهات والمتطابقات في المصحف كله، مراجعة يومية، تسميع، وورد وأذكار.">
 <meta name="color-scheme" content="light dark">
-<meta name="theme-color" content="#0d6b4c" media="(prefers-color-scheme: light)">
-<meta name="theme-color" content="#0e1412" media="(prefers-color-scheme: dark)">
+<meta name="theme-color" content="#4E5A2C" media="(prefers-color-scheme: light)">
+<meta name="theme-color" content="#15180E" media="(prefers-color-scheme: dark)">
 <link rel="manifest" href="manifest.webmanifest">
 <link rel="icon" href="favicon-32.png" sizes="32x32" type="image/png">
 <link rel="apple-touch-icon" href="apple-touch-icon.png">
 <meta name="mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-capable" content="yes">
 <meta name="apple-mobile-web-app-status-bar-style" content="default">
-<meta name="apple-mobile-web-app-title" content="متشابهات">
+<meta name="apple-mobile-web-app-title" content="صحوة">
 <meta property="og:type" content="website">
-<meta property="og:title" content="متشابهات المصحف">
+<meta property="og:title" content="صحوة">
 <meta property="og:description" content="تطبيق يسهّل حفظ القرآن: المتشابهات والمتطابقات في المصحف كله، مراجعة يومية، تسميع، وورد وأذكار.">
 <meta property="og:image" content="icon-512.png">
 <meta name="twitter:card" content="summary">
-<title>متشابهات المصحف</title>
+<title>صحوة</title>
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 
@@ -28,28 +28,28 @@
    Palette taken from a printed mushaf: greenish paper, ink, a single emerald rule,
    and a set of marker colours reserved for the differing word. */
 :root{
-  --paper:#eceeea; --card:#ffffff; --card2:#f5f7f3;
-  --ink:#15201b; --ink2:#4a5a51; --ink3:#7b8a81;
-  --line:#dbe1da; --line2:#c6cfc6;
-  --emerald:#0d6b4c; --emerald-soft:#e3f0e8; --on-emerald:#ffffff;
-  --gold:#8a6410;
-  --makki:#8a5a12; --makki-bg:#f6ecd9; --madani:#13614a; --madani-bg:#dcefe4;
-  --ok:#17683f; --ok-bg:#e2f1e7; --no:#9c2b2b; --no-bg:#fbe7e5;
+  --paper:#EFEDE0; --card:#FBF8EF; --card2:#F4F1E3;
+  --ink:#262B18; --ink2:#535843; --ink3:#6F7458;
+  --line:#E2DECB; --line2:#CDC8AF;
+  --emerald:#4E5A2C; --emerald-soft:#E8E7D2; --on-emerald:#FBF8EF;
+  --gold:#8A6A2A;
+  --makki:#8A6A2A; --makki-bg:#F3EAD4; --madani:#4E5A2C; --madani-bg:#E6E7D1;
+  --ok:#4E5A2C; --ok-bg:#E8E7D2; --no:#9C3B28; --no-bg:#F8E6DF;
   --m1:#a1541a; --m1b:#fbeadb; --m2:#9c2550; --m2b:#fde7ee;
   --m3:#5b43a8; --m3b:#eee9fb; --m4:#1b6079; --m4b:#e2f0f6;
   --m5:#4e6a14; --m5b:#eef3dc; --m6:#8c4a86; --m6b:#f8e9f6;
   --ui:"IBM Plex Sans Arabic","Segoe UI",system-ui,sans-serif;
   --quran:"Amiri Quran","Amiri","Traditional Arabic",serif;
-  --r:14px; --shadow:0 1px 2px rgba(20,40,30,.06),0 6px 18px rgba(20,40,30,.05);
+  --r:14px; --shadow:0 1px 2px rgba(45,45,25,.07),0 6px 18px rgba(45,45,25,.06);
 }
 @media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
-  --paper:#0e1412; --card:#161e1b; --card2:#1c2521;
-  --ink:#e7ece8; --ink2:#a6b4ac; --ink3:#7c8c83;
-  --line:#26312c; --line2:#334039;
-  --emerald:#49c79a; --emerald-soft:#13302a; --on-emerald:#06130f;
-  --gold:#d9ab4e;
-  --makki:#dcae5c; --makki-bg:#332710; --madani:#5ac89e; --madani-bg:#0e2f25;
-  --ok:#5fd09a; --ok-bg:#122e23; --no:#f08f86; --no-bg:#331a18;
+  --paper:#15180E; --card:#1F2316; --card2:#272C1C;
+  --ink:#ECEADC; --ink2:#B6B9A0; --ink3:#8C9074;
+  --line:#2F3423; --line2:#414731;
+  --emerald:#B6C47E; --emerald-soft:#2B3120; --on-emerald:#171A0F;
+  --gold:#D9B977;
+  --makki:#D9B977; --makki-bg:#332A14; --madani:#B6C47E; --madani-bg:#2A3020;
+  --ok:#A8C06A; --ok-bg:#262D17; --no:#E8927F; --no-bg:#33201A;
   --m1:#eba35e; --m1b:#3a2715; --m2:#f08aab; --m2b:#3a1b26;
   --m3:#b4a2f0; --m3b:#241f3c; --m4:#6fc2dd; --m4b:#132c35;
   --m5:#b4cc6a; --m5b:#242d14; --m6:#e2a3dc; --m6b:#331f31;
@@ -57,13 +57,13 @@
   color-scheme:dark;
 }}
 :root[data-theme="dark"]{
-  --paper:#0e1412; --card:#161e1b; --card2:#1c2521;
-  --ink:#e7ece8; --ink2:#a6b4ac; --ink3:#7c8c83;
-  --line:#26312c; --line2:#334039;
-  --emerald:#49c79a; --emerald-soft:#13302a; --on-emerald:#06130f;
-  --gold:#d9ab4e;
-  --makki:#dcae5c; --makki-bg:#332710; --madani:#5ac89e; --madani-bg:#0e2f25;
-  --ok:#5fd09a; --ok-bg:#122e23; --no:#f08f86; --no-bg:#331a18;
+  --paper:#15180E; --card:#1F2316; --card2:#272C1C;
+  --ink:#ECEADC; --ink2:#B6B9A0; --ink3:#8C9074;
+  --line:#2F3423; --line2:#414731;
+  --emerald:#B6C47E; --emerald-soft:#2B3120; --on-emerald:#171A0F;
+  --gold:#D9B977;
+  --makki:#D9B977; --makki-bg:#332A14; --madani:#B6C47E; --madani-bg:#2A3020;
+  --ok:#A8C06A; --ok-bg:#262D17; --no:#E8927F; --no-bg:#33201A;
   --m1:#eba35e; --m1b:#3a2715; --m2:#f08aab; --m2b:#3a1b26;
   --m3:#b4a2f0; --m3b:#241f3c; --m4:#6fc2dd; --m4b:#132c35;
   --m5:#b4cc6a; --m5b:#242d14; --m6:#e2a3dc; --m6b:#331f31;
@@ -72,27 +72,27 @@
 }
 /* the reader's own choice, set on the page; it comes after the two blocks above so it wins */
 :root[data-app="light"]{
-  --paper:#eceeea; --card:#ffffff; --card2:#f5f7f3;
-  --ink:#15201b; --ink2:#4a5a51; --ink3:#7b8a81;
-  --line:#dbe1da; --line2:#c6cfc6;
-  --emerald:#0d6b4c; --emerald-soft:#e3f0e8; --on-emerald:#ffffff;
-  --gold:#8a6410;
-  --makki:#8a5a12; --makki-bg:#f6ecd9; --madani:#13614a; --madani-bg:#dcefe4;
-  --ok:#17683f; --ok-bg:#e2f1e7; --no:#9c2b2b; --no-bg:#fbe7e5;
+  --paper:#EFEDE0; --card:#FBF8EF; --card2:#F4F1E3;
+  --ink:#262B18; --ink2:#535843; --ink3:#6F7458;
+  --line:#E2DECB; --line2:#CDC8AF;
+  --emerald:#4E5A2C; --emerald-soft:#E8E7D2; --on-emerald:#FBF8EF;
+  --gold:#8A6A2A;
+  --makki:#8A6A2A; --makki-bg:#F3EAD4; --madani:#4E5A2C; --madani-bg:#E6E7D1;
+  --ok:#4E5A2C; --ok-bg:#E8E7D2; --no:#9C3B28; --no-bg:#F8E6DF;
   --m1:#a1541a; --m1b:#fbeadb; --m2:#9c2550; --m2b:#fde7ee;
   --m3:#5b43a8; --m3b:#eee9fb; --m4:#1b6079; --m4b:#e2f0f6;
   --m5:#4e6a14; --m5b:#eef3dc; --m6:#8c4a86; --m6b:#f8e9f6;
-  --shadow:0 1px 2px rgba(20,40,30,.06),0 6px 18px rgba(20,40,30,.05);
+  --shadow:0 1px 2px rgba(45,45,25,.07),0 6px 18px rgba(45,45,25,.06);
   color-scheme:light;
 }
 :root[data-app="dark"]{
-  --paper:#0e1412; --card:#161e1b; --card2:#1c2521;
-  --ink:#e7ece8; --ink2:#a6b4ac; --ink3:#7c8c83;
-  --line:#26312c; --line2:#334039;
-  --emerald:#49c79a; --emerald-soft:#13302a; --on-emerald:#06130f;
-  --gold:#d9ab4e;
-  --makki:#dcae5c; --makki-bg:#332710; --madani:#5ac89e; --madani-bg:#0e2f25;
-  --ok:#5fd09a; --ok-bg:#122e23; --no:#f08f86; --no-bg:#331a18;
+  --paper:#15180E; --card:#1F2316; --card2:#272C1C;
+  --ink:#ECEADC; --ink2:#B6B9A0; --ink3:#8C9074;
+  --line:#2F3423; --line2:#414731;
+  --emerald:#B6C47E; --emerald-soft:#2B3120; --on-emerald:#171A0F;
+  --gold:#D9B977;
+  --makki:#D9B977; --makki-bg:#332A14; --madani:#B6C47E; --madani-bg:#2A3020;
+  --ok:#A8C06A; --ok-bg:#262D17; --no:#E8927F; --no-bg:#33201A;
   --m1:#eba35e; --m1b:#3a2715; --m2:#f08aab; --m2b:#3a1b26;
   --m3:#b4a2f0; --m3b:#241f3c; --m4:#6fc2dd; --m4b:#132c35;
   --m5:#b4cc6a; --m5b:#242d14; --m6:#e2a3dc; --m6b:#331f31;
@@ -138,8 +138,9 @@ button{font:inherit;color:inherit;cursor:pointer}
 .top{position:sticky;top:env(safe-area-inset-top,0px);z-index:30;background:var(--card);
   border-bottom:1px solid var(--line)}
 .top .wrap{display:flex;align-items:center;gap:12px;padding-block:10px;min-height:56px}
-.brand{font-weight:700;font-size:1.05rem;letter-spacing:-.01em;white-space:nowrap}
-.brand span{color:var(--emerald)}
+.brand{font-weight:700;font-size:1.12rem;letter-spacing:-.01em;white-space:nowrap;
+  display:flex;align-items:center;gap:9px;color:var(--emerald)}
+.brand .logo{width:30px;height:30px;flex:none;border-radius:7px;display:block}
 .scope{margin-inline-start:auto;display:flex;align-items:center;gap:6px;background:var(--emerald-soft);
   color:var(--emerald);border:1px solid transparent;border-radius:999px;padding:7px 13px;
   font-size:.82rem;font-weight:600;max-width:58%;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
@@ -726,7 +727,7 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
 
 <header class="top">
   <div class="wrap">
-    <div class="brand">متشابهات <span>المصحف</span></div>
+    <div class="brand"><svg class="logo" viewBox="0 0 32 32" aria-hidden="true"><rect width="32" height="32" rx="7.2" fill="#4E5A2C"/><g fill="none" stroke="#FBF8EF" stroke-width="1.7" stroke-linecap="round"><path d="M10.05 24.2V12.6a5.95 5.95 0 0 1 11.9 0v11.6"/><path d="M8 24.2h16"/></g><path d="M11.7 24.2a4.3 4.3 0 0 1 8.6 0z" fill="#C4A46A"/></svg>صحوة</div>
     <button class="scope" id="scopeBtn" type="button">كل المصحف</button>
     <button class="topbtn" id="searchBtn" type="button" aria-label="بحث">
       <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="m16 16 4 4"/></svg>
@@ -2266,7 +2267,7 @@ function aboutHTML(){
   const p = (h,b) => '<b style="color:var(--ink);display:block;margin-top:13px">'+h+"</b>"+b;
   return '<h2 class="sec">عن التطبيق ومصادره</h2>'
     + '<div class="card muted" style="line-height:1.95;font-size:.85rem">'
-    + '<div style="margin-top:-2px">متشابهات المصحف — النسخة '+APP_VER+"</div>"
+    + '<div style="margin-top:-2px">صحوة — النسخة '+APP_VER+"</div>"
     + p("نص المصحف",
         "رواية حفص عن عاصم بالرسم العثماني. النص اتسحب من مصدرين مستقلين واتقارن آية بآية قبل "
       + "ما يدخل التطبيق: <span dir=\"ltr\">api.alquran.cloud</span> (نص تنزيل) و"
