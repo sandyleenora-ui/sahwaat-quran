@@ -1,0 +1,20 @@
+{
+  "name": "متشابهات المصحف",
+  "short_name": "متشابهات",
+  "description": "تطبيق يسهّل حفظ القرآن: المتشابهات والمتطابقات في المصحف كله، مراجعة يومية، تسميع، وورد وأذكار.",
+  "lang": "ar",
+  "dir": "rtl",
+  "id": "./",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#eceeea",
+  "theme_color": "#0d6b4c",
+  "categories": ["education", "books"],
+  "icons": [
+    { "src": "icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icon-512-maskable.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}
