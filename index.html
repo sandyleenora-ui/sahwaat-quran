@@ -3068,7 +3068,9 @@ function ayahSrc(k){
 function markNow(k){
   $$(".aitem.now").forEach(e=>e.classList.remove("now"));
   if(!k) return;
-  const el = $('.aitem[data-k="'+k+'"]');
+  const root = (PLAY && PLAY.host) ? PLAY.host : document;
+  const el = $('.aitem[data-k="'+k+'"]', root)
+          || $('section:not([hidden]) .aitem[data-k="'+k+'"]');
   if(el){
     el.classList.add("now");
     const r = el.getBoundingClientRect();
@@ -3094,8 +3096,8 @@ function seqBar(){
     + [1,3,5,7,10].map(n=>'<button type="button" data-rep="'+n+'" aria-pressed="'
         + String(n===repN())+'">'+ar(n)+"</button>").join("")+"</div>";
 }
-function seqStart(keys, i){
-  PLAY = {keys, i: i||0, rep: 0};
+function seqStart(keys, i, host){
+  PLAY = {keys, i: i||0, rep: 0, host: host || null};
   wirePlayer();
   seqPlayNow();
 }
@@ -3930,8 +3932,14 @@ document.addEventListener("click", e=>{
           toast("هتتكرر "+ar(S.repeatN)+(S.repeatN===1?" مرة":" مرات"));
           return; }
   if(t.closest("#seqGo")){
-    const ks = $$(".aitem[data-k]").map(e=>e.dataset.k);
-    if(ks.length) seqStart(ks, 0);
+    const host = t.closest("section") || document;
+    const seen = {}, ks = [];
+    $$(".aitem[data-k]", host).forEach(e=>{
+      const k = e.dataset.k;
+      if(k && !seen[k]){ seen[k] = 1; ks.push(k); }
+    });
+    if(ks.length) seqStart(ks, 0, host);
+    else toast("مفيش آيات هنا أقراها.");
     return;
   }
   if(t.closest("[data-pause]")){ audioToggle(); return; }

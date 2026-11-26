@@ -1,5 +1,5 @@
 /* كاش بسيط: التطبيق يفتح من غير نت بعد أول مرة. */
-var V = "mushaf-f6506cf8df";
+var V = "mushaf-0647609c05";
 var ASSETS = ["./", "./index.html", "./data.json", "./manifest.webmanifest",
               "./icon-192.png", "./icon-512.png", "./icon-512-maskable.png",
               "./apple-touch-icon.png", "./favicon-32.png"];
