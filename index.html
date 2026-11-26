@@ -35,6 +35,8 @@
   --gold:#8A6A2A;
   --makki:#8A6A2A; --makki-bg:#F3EAD4; --madani:#4E5A2C; --madani-bg:#E6E7D1;
   --ok:#4E5A2C; --ok-bg:#E8E7D2; --no:#9C3B28; --no-bg:#F8E6DF;
+  --mk1:#C06A12; --mk1b:#FCEBD6; --mk2:#BE3426; --mk2b:#FBE2DC;
+  --mk3:#2F63AE; --mk3b:#DFE9F8;
   --m1:#a1541a; --m1b:#fbeadb; --m2:#9c2550; --m2b:#fde7ee;
   --m3:#5b43a8; --m3b:#eee9fb; --m4:#1b6079; --m4b:#e2f0f6;
   --m5:#4e6a14; --m5b:#eef3dc; --m6:#8c4a86; --m6b:#f8e9f6;
@@ -50,6 +52,8 @@
   --gold:#D9B977;
   --makki:#D9B977; --makki-bg:#332A14; --madani:#B6C47E; --madani-bg:#2A3020;
   --ok:#A8C06A; --ok-bg:#262D17; --no:#E8927F; --no-bg:#33201A;
+  --mk1:#F0A94A; --mk1b:#3C2A10; --mk2:#F28B76; --mk2b:#3C1F19;
+  --mk3:#8AB2EE; --mk3b:#16243A;
   --m1:#eba35e; --m1b:#3a2715; --m2:#f08aab; --m2b:#3a1b26;
   --m3:#b4a2f0; --m3b:#241f3c; --m4:#6fc2dd; --m4b:#132c35;
   --m5:#b4cc6a; --m5b:#242d14; --m6:#e2a3dc; --m6b:#331f31;
@@ -64,6 +68,8 @@
   --gold:#D9B977;
   --makki:#D9B977; --makki-bg:#332A14; --madani:#B6C47E; --madani-bg:#2A3020;
   --ok:#A8C06A; --ok-bg:#262D17; --no:#E8927F; --no-bg:#33201A;
+  --mk1:#F0A94A; --mk1b:#3C2A10; --mk2:#F28B76; --mk2b:#3C1F19;
+  --mk3:#8AB2EE; --mk3b:#16243A;
   --m1:#eba35e; --m1b:#3a2715; --m2:#f08aab; --m2b:#3a1b26;
   --m3:#b4a2f0; --m3b:#241f3c; --m4:#6fc2dd; --m4b:#132c35;
   --m5:#b4cc6a; --m5b:#242d14; --m6:#e2a3dc; --m6b:#331f31;
@@ -79,6 +85,8 @@
   --gold:#8A6A2A;
   --makki:#8A6A2A; --makki-bg:#F3EAD4; --madani:#4E5A2C; --madani-bg:#E6E7D1;
   --ok:#4E5A2C; --ok-bg:#E8E7D2; --no:#9C3B28; --no-bg:#F8E6DF;
+  --mk1:#C06A12; --mk1b:#FCEBD6; --mk2:#BE3426; --mk2b:#FBE2DC;
+  --mk3:#2F63AE; --mk3b:#DFE9F8;
   --m1:#a1541a; --m1b:#fbeadb; --m2:#9c2550; --m2b:#fde7ee;
   --m3:#5b43a8; --m3b:#eee9fb; --m4:#1b6079; --m4b:#e2f0f6;
   --m5:#4e6a14; --m5b:#eef3dc; --m6:#8c4a86; --m6b:#f8e9f6;
@@ -93,6 +101,8 @@
   --gold:#D9B977;
   --makki:#D9B977; --makki-bg:#332A14; --madani:#B6C47E; --madani-bg:#2A3020;
   --ok:#A8C06A; --ok-bg:#262D17; --no:#E8927F; --no-bg:#33201A;
+  --mk1:#F0A94A; --mk1b:#3C2A10; --mk2:#F28B76; --mk2b:#3C1F19;
+  --mk3:#8AB2EE; --mk3b:#16243A;
   --m1:#eba35e; --m1b:#3a2715; --m2:#f08aab; --m2b:#3a1b26;
   --m3:#b4a2f0; --m3b:#241f3c; --m4:#6fc2dd; --m4b:#132c35;
   --m5:#b4cc6a; --m5b:#242d14; --m6:#e2a3dc; --m6b:#331f31;
@@ -746,9 +756,9 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
   transition:width .08s linear}
 .meter.on{background:var(--no-bg)}
 /* ---- شريط التابات: خمسة بس عشان يبقى مريح على الفون ---- */
-.tabs button{font-size:.63rem;padding:8px 0 7px;gap:3px;letter-spacing:-.01em}
-.tabs button svg{width:20px;height:20px}
-.tabs .wrap{padding-inline:4px}
+.tabs button{font-size:.59rem;padding:8px 0 7px;gap:3px;letter-spacing:-.02em}
+.tabs button svg{width:19px;height:19px}
+.tabs .wrap{padding-inline:2px}
 .tabs button[aria-selected="true"]{background:var(--emerald-soft)}
 .confetti{position:fixed;inset:0;z-index:95;pointer-events:none}
 .addtask{display:flex;gap:8px;margin-top:12px;padding-top:12px;border-top:1px solid var(--line)}
@@ -760,6 +770,76 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
 .fadl .aya{font-family:var(--quran);font-size:1.12rem;line-height:2.3;color:var(--emerald);
   display:block;margin:4px 0 2px}
 .fadl .src{font-size:.74rem;color:var(--ink3);font-weight:600}
+.memocard{background:var(--card);border:1px solid var(--emerald);border-radius:16px;
+  padding:15px 16px;margin-bottom:16px}
+.memocard>b{display:block;font-size:1rem;margin-bottom:4px}
+.lrec{width:100%;background:var(--card2);color:var(--ink);border:1px solid var(--line2);
+  border-radius:10px;padding:9px 11px;font:inherit;font-size:.86rem;margin:-6px 0 14px}
+/* ---- علاماتك على الآيات ---- */
+.mkdot{flex:none;width:22px;height:22px;border-radius:50%;border:2px dashed var(--line2);
+  background:transparent;cursor:pointer;padding:0;margin-inline-start:4px}
+.mkdot.m1{background:var(--mk1);border:2px solid var(--mk1)}
+.mkdot.m2{background:var(--mk2);border:2px solid var(--mk2)}
+.mkdot.m3{background:var(--mk3);border:2px solid var(--mk3)}
+.aitem[data-mk="1"]{border-inline-start:4px solid var(--mk1)}
+.aitem[data-mk="1"]>summary{background:var(--mk1b)}
+.aitem[data-mk="2"]{border-inline-start:4px solid var(--mk2)}
+.aitem[data-mk="2"]>summary{background:var(--mk2b)}
+.aitem[data-mk="3"]{border-inline-start:4px solid var(--mk3)}
+.aitem[data-mk="3"]>summary{background:var(--mk3b)}
+.legend{display:flex;flex-direction:column;gap:7px;background:var(--card);
+  border:1px solid var(--line);border-radius:13px;padding:12px 14px;margin-bottom:13px}
+.legend .lg{display:flex;gap:9px;align-items:center;font-size:.82rem;color:var(--ink2)}
+.legend .sw{flex:none;width:15px;height:15px;border-radius:50%}
+.legend .sw1{background:var(--mk1)} .legend .sw2{background:var(--mk2)}
+.legend .sw3{background:var(--mk3)}
+.legend .hint{font-size:.76rem;color:var(--ink3);line-height:1.7;margin-top:2px}
+/* ---- ملاحظاتي ---- */
+.ncard{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  padding:13px 14px;display:flex;flex-direction:column;gap:7px}
+.ncard .nh{display:flex;gap:8px;align-items:center}
+.ncard .nh b{font-size:.78rem;color:var(--emerald);flex:1;min-width:0}
+.ncard .nt{font-size:.92rem;line-height:1.9;white-space:pre-wrap;word-break:break-word}
+.ncard .nx{background:none;border:0;color:var(--ink3);cursor:pointer;font:inherit;
+  font-size:1.05rem;padding:2px 5px;line-height:1}
+/* ---- شريط التابات بيتسحب لما يزيد ---- */
+.tabs .wrap{display:flex;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}
+.tabs .wrap::-webkit-scrollbar{display:none}
+.tabs button{flex:0 0 auto;min-width:68px;scroll-snap-align:center;font-size:.67rem}
+.tabs button svg{width:21px;height:21px}
+/* ---- التجويد ---- */
+.tjrule{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
+.tjrule>summary{list-style:none;cursor:pointer;padding:13px 15px;display:flex;gap:10px;
+  align-items:center;font-weight:700;font-size:.95rem}
+.tjrule>summary::-webkit-details-marker{display:none}
+.tjrule[open]>summary{border-bottom:1px solid var(--line);background:var(--card2)}
+.tjrule .tag2{flex:none;font-size:.68rem;font-weight:700;padding:3px 8px;border-radius:7px;
+  background:var(--emerald-soft);color:var(--emerald)}
+.tjbody{padding:13px 15px;font-size:.88rem;line-height:2;color:var(--ink2)}
+.tjbody b{color:var(--ink)}
+.tjl{display:flex;flex-wrap:wrap;gap:6px;margin:9px 0}
+.tjl span{background:var(--emerald-soft);color:var(--emerald);border-radius:8px;
+  padding:5px 11px;font-size:1.05rem;font-weight:700}
+.tjex{background:var(--card2);border:1px solid var(--line);border-radius:11px;
+  padding:10px 12px;margin-top:9px}
+.tjex .ayah{font-size:1.14rem}
+.tjhit{color:var(--no);font-weight:inherit;background:var(--no-bg);border-radius:5px;
+  padding:0 3px}
+.tjq{background:var(--card);border:1px solid var(--line);border-radius:16px;padding:16px;
+  margin-bottom:14px}
+.tjscore{display:flex;gap:9px;align-items:center;font-size:.82rem;font-weight:700;
+  color:var(--ink3);margin-bottom:10px}
+.tjscore b{color:var(--emerald)}
+/* ---- الاختبار ---- */
+.exrow{display:flex;gap:8px;flex-wrap:wrap;align-items:center;margin:10px 0}
+.exrow select{flex:1 1 140px;min-width:0;background:var(--card2);color:var(--ink);
+  border:1px solid var(--line2);border-radius:10px;padding:10px 11px;font:inherit;font-size:.9rem}
+.exlab{font-size:.8rem;font-weight:700;color:var(--ink3);margin-top:12px}
+.exres{background:var(--emerald-soft);border-radius:13px;padding:13px 14px;text-align:center;
+  font-weight:700;color:var(--emerald);line-height:1.9;margin-bottom:14px}
+.exdone{text-align:center;padding:22px 8px}
+.exdone .big{font-size:2.1rem;font-weight:700;color:var(--emerald);line-height:1.2}
+.exdone .sub{font-size:.9rem;color:var(--ink3);margin-top:8px;line-height:1.9}
 </style>
 
 <header class="top">
@@ -783,6 +863,9 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
   <section id="v-voice" hidden></section>
   <section id="v-sahwa" hidden></section>
   <section id="v-wird" hidden></section>
+  <section id="v-notes" hidden></section>
+  <section id="v-tajweed" hidden></section>
+  <section id="v-exam" hidden></section>
 </main>
 
 <audio id="player" preload="none" playsinline></audio>
@@ -811,6 +894,15 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
     <button type="button" data-tab="wird" aria-selected="false">
       <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="4"/><path d="M12 2.5v2.2M12 19.3v2.2M21.5 12h-2.2M4.7 12H2.5M18.7 5.3l-1.6 1.6M6.9 17.1l-1.6 1.6M18.7 18.7l-1.6-1.6M6.9 6.9 5.3 5.3"/></svg>
       وِردي</button>
+    <button type="button" data-tab="notes" aria-selected="false">
+      <svg viewBox="0 0 24 24"><path d="M6 3.5h9l4 4V20a.5.5 0 0 1-.5.5h-12A.5.5 0 0 1 6 20z"/><path d="M14.5 3.5V8h4.2M9 12.5h6M9 16h4"/></svg>
+      ملاحظات</button>
+    <button type="button" data-tab="tajweed" aria-selected="false">
+      <svg viewBox="0 0 24 24"><path d="M4 6.5h16M4 12h16M4 17.5h10"/><circle cx="18" cy="17.5" r="2.2"/></svg>
+      تجويد</button>
+    <button type="button" data-tab="exam" aria-selected="false">
+      <svg viewBox="0 0 24 24"><path d="M7 3.5h10a1 1 0 0 1 1 1V20l-6-2.8L6 20V4.5a1 1 0 0 1 1-1z"/><path d="M9.5 8.5h5M9.5 12h3"/></svg>
+      اختبار</button>
   </div>
 </nav>
 
@@ -901,6 +993,7 @@ let S = { cards:{}, notes:{}, scope:{k:"all"}, day:{d:"",n:0}, streak:0, lastDay
           theme:"auto", cb:false, surah:0, juz:0,
           memo:{all:true}, newPerDay:10, v:1,
           wird:0, dh:{d:"",c:{}}, wd:{d:"",done:{},streak:0,full:""}, myDh:[], myTasks:[],
+          mk:{}, myNotes:[], exam:null, examLast:null,
           chk:{s:{},j:{}}, plan:null };
 function applyPrefs(){
   const r=document.documentElement;
@@ -1927,8 +2020,11 @@ function showLearn(){
     + '<div class="ltitle">'+esc(L_STAGE[st].t)+"</div>"
     + '<div class="lhow">'+esc(L_STAGE[st].h)+"</div>"
     + boxes
-    + (st === 0 ? '<button class="btn ghost block" type="button" data-ayplay="'+k+'" '
-        + 'style="margin:-4px 0 14px">▶ اسمعيها بصوت '+esc(reciterName())+"</button>" : "")
+    + (st === 0 ? '<button class="btn ghost block" type="button" data-ayrep="'+k+'" '
+        + 'style="margin:-4px 0 8px">▶ اسمعيها بصوت '+esc(reciterName())+"</button>"
+        + '<select class="lrec" id="lRec" aria-label="اختاري الشيخ">'
+        + RECITERS.map(r=>'<option value="'+r.id+'"'+(r.id===reciter()?" selected":"")
+            + ">"+esc(r.n)+"</option>").join("")+"</select>" : "")
     + dotsHTML(L.reps, need);
   f.innerHTML = '<button class="btn block" type="button" id="lRep">'
       + (st===0 ? "قرأتها" : "قلتها صح")+"</button>"
@@ -2173,10 +2269,14 @@ function ayahRow(k, withRef){
     flags += '<span class="flag t-'+t+'">'+TYPE_AR[t]+"</span>");
   let body = '<div class="afull">'+esc(w.join(" "))+"<br>"+playBtn(k, true)+"</div>";
   if(cs.length) body += '<div class="awhere">'+whereHTML(k,cs)+"</div>";
-  return '<details class="aitem" data-k="'+k+'"><summary><span class="anum">'
+  const mk = mkOf(k);
+  return '<details class="aitem" data-k="'+k+'"'+(mk?' data-mk="'+mk+'"':"")
+    + '><summary><span class="anum">'
     + (withRef ? esc(refAr(k)) : ar(ayno(k)))+"</span>"
     + '<span class="ahead">'+esc(head)+(w.length>4?" …":"")+"</span>"+flags
     + playBtn(k)
+    + '<button class="mkdot'+(mk?" m"+mk:"")+'" type="button" data-mk="'+k
+    + '" aria-label="علّمي الآية"></button>'
     + "</summary>"+body+"</details>";
 }
 function whereHTML(k, cs){
@@ -2231,6 +2331,8 @@ function surahMapHTML(n){
     + '<div class="sur-head"><h1>'+esc(SU[n])+'<small>السورة '+ar(n)+"</small></h1>"
     + surahFacts(n) + openingHTML(n) + "</div>"
     + '<div class="player" id="playBar"></div>'
+    + '<h2 class="sec">علاماتك</h2>'
+    + legendHTML(n)
     + '<h2 class="sec">آيات السورة</h2>'
     + '<div class="muted" style="margin-bottom:11px;line-height:1.8">مرتبة بصفحات المصحف. دوسي على أي آية تشوفيها كاملة وتشوفي مواضعها في المصحف كله ('
     + ar(tricky)+" موضع في السورة دي).</div>"
@@ -2255,6 +2357,9 @@ function render(){
   $("#v-voice").hidden = tab!=="voice";
   $("#v-sahwa").hidden = tab!=="sahwa";
   $("#v-wird").hidden = tab!=="wird";
+  $("#v-notes").hidden = tab!=="notes";
+  $("#v-tajweed").hidden = tab!=="tajweed";
+  $("#v-exam").hidden = tab!=="exam";
   if(tab==="today") renderToday();
   if(tab==="browse") renderBrowse();
   if(tab==="memo") renderMemo();
@@ -2262,6 +2367,9 @@ function render(){
   if(tab==="voice") renderVoice();
   if(tab==="sahwa") renderSahwa();
   if(tab==="wird") renderWird();
+  if(tab==="notes") renderNotes();
+  if(tab==="tajweed") renderTajweed();
+  if(tab==="exam") renderExam();
 }
 function renderMemo(){
   $("#v-memo").innerHTML = S.surah ? surahMapHTML(S.surah)
@@ -2313,7 +2421,10 @@ function openSettings(){
     + l+"</button>").join("")+"</div>";
   const m = S.memo || {all:true}, mj=m.juz||[], ms=m.sur||[], mr=m.ranges||[];
   $("#setBody").innerHTML =
-    memoPickHTML(seg)
+    '<div class="setrow"><div class="lbl"><b>المحفوظ بتاعي</b>'
+    + '<small>بتتحدد من تاب «مراجعة» فوق — هتلاقي الأجزاء والسور ونطاق الآيات هناك '
+    + "قدامك على طول.</small></div>"
+    + '<button class="btn ghost" type="button" data-go="today">افتحيه</button></div>'
     + '<div class="setrow"><div class="lbl"><b>مواضع جديدة في اليوم</b>'
     + '<small>كام موضع جديد يدخل مراجعتك كل يوم. صفر يعني مراجعة القديم بس.</small></div>'
     + seg("new",[["0","٠"],["5","٥"],["10","١٠"],["20","٢٠"]], S.newPerDay==null?10:S.newPerDay)+"</div>"
@@ -2392,8 +2503,7 @@ function memoTouch(){
   const mn=$("#memoNow");
   if(mn) mn.innerHTML = "المحفوظ دلوقتي: <b>"+esc(memoLabel())+"</b> — "
                       + ar(CASES.filter(inMemo).length)+" موضع.";
-  const mb=$("#memoBox>summary");
-  if(mb) mb.innerHTML = esc(memoLabel())+"<small>غيّريها</small>";
+
 }
 function hijri(){
   try{
@@ -2780,6 +2890,8 @@ function wirePlayer(){
     if(p.dataset.lbl) toast(p.dataset.lbl);
   });
   p.addEventListener("ended", seqEnded);
+  p.addEventListener("play", syncPause);
+  p.addEventListener("pause", syncPause);
   p.addEventListener("error", ()=>{
     $$(".pbtn.busy").forEach(b=>b.classList.remove("busy"));
     toast("ما قدرتش أجيب الصوت. اتأكدي إن في نت — ولو النت شغّال يبقى الموقع مقفول "
@@ -2865,8 +2977,14 @@ function renderVoice(){
     + Array.from({length:SC[vSur]},(_,i)=>i+1).map(n=>'<option value="'+n+'"'
         + (n===vAyah?" selected":"")+">آية "+ar(n)+"</option>").join("")+"</select></div>"
     + '<div class="vprev">'+esc(D.verses[k][0].join(" "))+"</div>"
-    + '<button class="btn block" type="button" data-ayplay="'+k+'" style="margin-bottom:11px">'
+    + '<button class="btn block" type="button" data-ayrep="'+k+'" style="margin-bottom:9px">'
       + "▶ اسمعي الآية بصوت "+esc(reciterName())+"</button>"
+    + '<div class="repsel" style="margin-bottom:12px"><span>كرري الآية:</span>'
+    + [1,3,5,7,10].map(n=>'<button type="button" data-rep="'+n+'" aria-pressed="'
+        + String(n===repN())+'">'+ar(n)+"</button>").join("")
+    + '<button class="abtn" type="button" data-pause style="margin-inline-start:auto">'
+    + pauseLabel()+"</button>"
+    + '<button class="abtn" type="button" id="seqStop2">إنهاء</button></div>'
     + '<div class="audrow">'
       + '<button class="abtn'+(on?" rec":"")+'" type="button" data-arec="'+k+'">'
         + '<span class="dot"></span>'+(on?"وقّفي التسجيل":"سجّلي صوتك")+"</button>"
@@ -2919,6 +3037,26 @@ function renderVoice(){
 /* ============================================ قراءة السورة كاملة
    بتقرا آية ورا آية، وبتحدّد الآية اللي بتتقرا دلوقتي، وتقدري تخلّي كل آية
    تتكرّر كذا مرة قبل ما تعدّي — ده أنفع حاجة في الحفظ. */
+/* وقفة واستكمال من نفس المكان — حتى لو في نص الآية */
+const pauseLabel = () => { const p = player();
+  return (p.src && p.paused && p.currentTime > 0) ? "▶ كمّلي" : "⏸ وقفة"; };
+function syncPause(){
+  $$("[data-pause]").forEach(b => b.textContent = pauseLabel());
+}
+function audioToggle(){
+  const p = player();
+  if(!p.src){ toast("مفيش حاجة بتتقرا دلوقتي."); return; }
+  if(p.paused){
+    const d = p.play();
+    if(d && d.catch) d.catch(()=>toast("المتصفح رفض يكمّل — دوسي تاني.", true));
+    toast("كمّلنا من نفس المكان.");
+  }else{
+    p.pause();
+    toast("وقفت. دوسي «كمّلي» تكمّلي من نفس المكان.");
+  }
+  syncPause();
+  seqBar();
+}
 let PLAY = null;
 const repN = () => S.repeatN || 1;
 
@@ -2947,8 +3085,9 @@ function seqBar(){
             + (repN()>1 ? " · مرة "+ar(PLAY.rep+1)+" من "+ar(repN()) : "")+"</span>"
           : '<span class="now">اقري السورة كلها بصوت '+esc(reciterName())+"</span>")
     + "</div><div class=\"prow\">"
-    + (on ? '<button class="btn pbig" type="button" id="seqStop">إيقاف</button>'
-            + '<button class="btn ghost" type="button" id="seqNext">الآية اللي بعدها ⏭</button>'
+    + (on ? '<button class="btn pbig" type="button" data-pause>'+pauseLabel()+"</button>"
+            + '<button class="btn ghost" type="button" id="seqNext">⏭ اللي بعدها</button>'
+            + '<button class="btn ghost" type="button" id="seqStop">إنهاء</button>'
           : '<button class="btn pbig" type="button" id="seqGo">▶ اقري السورة</button>')
     + "</div>"
     + '<div class="repsel"><span>كرري كل آية:</span>'
@@ -2966,6 +3105,8 @@ function seqPlayNow(){
   if(!k){ seqStop(); return; }
   markNow(k);
   seqBar();
+  if(!$("#playBar"))
+    toast(refAr(k)+(repN()>1 ? " · مرة "+ar(PLAY.rep+1)+" من "+ar(repN()) : ""));
   playSrc(ayahSrc(k), "", "ما قدرتش أشغّل الآية — اتأكدي من النت.");
 }
 function seqNext(){
@@ -2992,6 +3133,290 @@ function seqStop(){
 }
 function renderWird(){
   $("#v-wird").innerHTML = wirdHTML();
+}
+/* ===================================================== علاماتك على الآيات
+   تلات ألوان تختاريهم بنفسك: فين وقفتي في الحفظ، الآية اللي بتلغبطك،
+   وفين وقفتوا مع الشيخة. الدوسة بتلف على الألوان وبعدين تشيلها. */
+const MK_AR = ["", "وقفت هنا في الحفظ", "آية بتلغبطني", "وقفنا هنا مع الشيخة"];
+function mks(){ if(!S.mk) S.mk = {}; return S.mk; }
+const mkOf = k => mks()[k] | 0;
+function mkSet(k, v){
+  if(v) mks()[k] = v; else delete mks()[k];
+  save();
+}
+function legendHTML(n){
+  const found = [1,2,3].map(v=>{
+    const keys = Object.keys(mks()).filter(k=>mks()[k]===v && +k.split(":")[0]===n)
+                       .sort(cmpKey);
+    return keys.length ? ar(ayno(keys[keys.length-1])) : "";
+  });
+  return '<div class="legend">'
+    + [1,2,3].map(v=>'<div class="lg"><span class="sw sw'+v+'"></span>'
+        + esc(MK_AR[v])
+        + (found[v-1] ? ' <b style="margin-inline-start:auto;color:var(--mk'+v+')">آية '
+                        + found[v-1]+"</b>" : "")+"</div>").join("")
+    + '<div class="hint">دوسي على الدايرة اللي جنب أي آية عشان تعلّميها — '
+    + "الدوسة بتلف على التلات ألوان وبعدين تشيل العلامة.</div></div>";
+}
+
+/* ===================================================== ملاحظاتي */
+function notesHTML(){
+  const list = (S.myNotes || []).slice().reverse();
+  return '<h2 class="sec">اكتبي ملاحظة</h2>'
+    + '<div class="card" style="margin-bottom:18px">'
+    + '<div class="muted" style="font-size:.84rem;line-height:1.85;margin-bottom:10px">'
+    + "اللي الشيخة قالته، أو ملاحظة ليكي على آية، أو أي حاجة تحبي ترجعيلها.</div>"
+    + '<textarea class="wfld" id="noteT" rows="4" placeholder="اكتبي هنا…" '
+    + 'aria-label="نص الملاحظة"></textarea>'
+    + '<div class="row" style="margin-top:9px">'
+    + '<select class="wfld" id="noteS" style="flex:1 1 130px" aria-label="السورة">'
+    + '<option value="">من غير سورة</option>'
+    + D.surahs.map(x=>'<option value="'+x.n+'">'+ar(x.n)+". "+esc(x.name)+"</option>").join("")
+    + "</select>"
+    + '<input class="wfld" id="noteA" type="number" min="1" placeholder="آية" '
+    + 'style="width:84px" aria-label="رقم الآية">'
+    + '<button class="btn" type="button" id="noteAdd">احفظي</button></div></div>'
+    + '<h2 class="sec">ملاحظاتي'+(list.length?" — "+ar(list.length):"")+"</h2>"
+    + (list.length
+        ? '<div class="stack">'+list.map(x=>'<div class="ncard">'
+            + '<div class="nh"><b>'+esc(x.r || "ملاحظة")+"</b>"
+            + '<button class="nx" type="button" data-ndel="'+esc(x.id)
+            + '" aria-label="حذف">×</button></div>'
+            + '<div class="nt">'+esc(x.t)+"</div></div>").join("")+"</div>"
+        : '<div class="vempty">لسه ما كتبتيش ملاحظات.<br>اكتبي أول واحدة فوق.</div>');
+}
+function renderNotes(){ $("#v-notes").innerHTML = notesHTML(); }
+/* ======================================================== التجويد
+   الدروس مكتوبة ملخّصة للقواعد المشهورة. التمارين مش مكتوبة بإيد —
+   كل سؤال بيتولّد من نص المصحف نفسه، والحكم محسوب من الحروف ومتأكَّد
+   منه من الرسم العثماني، فالإجابة مضمونة. */
+const TJ_AR = {
+  izhar:    "إظهار حلقي",
+  idgham_g: "إدغام بغنة",
+  idgham_n: "إدغام بغير غنة",
+  iqlab:    "إقلاب",
+  ikhfa:    "إخفاء حقيقي"
+};
+const TJ_RULES = [
+  {id:"izhar", n:"الإظهار الحلقي", c:"٦ حروف",
+   L:["ء","هـ","ع","ح","غ","خ"],
+   d:"لو جه بعد النون الساكنة أو التنوين حرف من حروف الحلق الستة، بتنطقي النون "
+     + "<b>واضحة من غير غنة زيادة ولا إدغام</b> — كأنها نون عادية ساكنة.",
+   m:"وتتجمع في: «أخي هاك علمًا حازه غير خاسر»."},
+  {id:"idgham_g", n:"الإدغام بغنة", c:"٤ حروف — ينمو",
+   L:["ي","ن","م","و"],
+   d:"النون بتدخل في الحرف اللي بعدها وتبقى معاه حرف واحد مشدّد، <b>مع غنة</b> "
+     + "(صوت من الأنف) مقدارها حركتين.",
+   m:"وبيكون بين كلمتين. ومع «ن» و«م» الإدغام كامل، ومع «ي» و«و» ناقص — الغنة "
+     + "بتفضل. ولو النون والواو أو الياء في <b>نفس الكلمة</b> (زي الدنيا، بنيان، "
+     + "صنوان، قنوان) بتبقى <b>إظهار مطلق</b> مش إدغام."},
+  {id:"idgham_n", n:"الإدغام بغير غنة", c:"حرفين",
+   L:["ل","ر"],
+   d:"النون بتدخل في اللام أو الراء <b>من غير غنة خالص</b>، وبتبقى حرف مشدّد.",
+   m:"وبيكون بين كلمتين برضه."},
+  {id:"iqlab", n:"الإقلاب", c:"حرف واحد",
+   L:["ب"],
+   d:"النون الساكنة أو التنوين بتتقلب <b>ميمًا مخفاة</b> مع غنة مقدارها حركتين، "
+     + "من غير ما الشفايف تنطبق بقوة.",
+   m:"وفي المصحف بتلاقي <b>ميم صغيرة</b> فوق النون أو التنوين — دي علامة الإقلاب."},
+  {id:"ikhfa", n:"الإخفاء الحقيقي", c:"١٥ حرف",
+   L:["ت","ث","ج","د","ذ","ز","س","ش","ص","ض","ط","ظ","ف","ق","ك"],
+   d:"النطق بيبقى <b>بين الإظهار والإدغام</b>: النون مش واضحة ومش مدغمة، "
+     + "واللسان ما بيلمسش مخرج النون، <b>مع غنة</b> مقدارها حركتين.",
+   m:"وده أكتر حكم بيتكرر في المصحف."}
+];
+const tjAll = () => (D.tajweed || {});
+function tjSeg(h, mark){
+  const w = D.verses[h.k][0];
+  const lo = Math.max(0, h.w - 1), hi = Math.min(w.length, h.w + 2);
+  return w.slice(lo, hi).map((x, i) =>
+    (mark && lo + i === h.w) ? '<span class="tjhit">'+esc(x)+"</span>" : esc(x)
+  ).join(" ");
+}
+function tjExample(id){
+  const list = tjAll()[id] || [];
+  if(!list.length) return "";
+  const h = list[(daySeed() + id.length) % list.length];
+  return '<div class="tjex"><div class="ref">'+esc(refAr(h.k))+"</div>"
+    + '<div class="ayah sm" style="margin-top:5px">'+tjSeg(h, true)+"</div></div>";
+}
+/* ---- التمرين ---- */
+let TJQ = null;
+function tjNew(){
+  const ids = Object.keys(tjAll()).filter(r=>(tjAll()[r]||[]).length);
+  if(!ids.length) return null;
+  const id = ids[(Math.random()*ids.length)|0];
+  const list = tjAll()[id];
+  const h = list[(Math.random()*list.length)|0];
+  const wrong = shuffle(ids.filter(x=>x!==id)).slice(0,3);
+  return {h, id, opts: shuffle([id, ...wrong])};
+}
+function tjStart(){
+  TJQ = {q: tjNew(), right: 0, wrong: 0, done: false};
+  renderTajweed();
+}
+function tjQuizHTML(){
+  if(!TJQ) return '<button class="btn block" type="button" id="tjGo">ابدئي التمرين</button>';
+  const q = TJQ.q;
+  if(!q) return '<div class="muted">مفيش تمارين متاحة.</div>';
+  return '<div class="tjscore">صح <b>'+ar(TJQ.right)+"</b> · غلط <b>"+ar(TJQ.wrong)
+    + "</b></div>"
+    + '<div class="ref">'+esc(refAr(q.h.k))+"</div>"
+    + '<div class="ayah" style="margin:8px 0 4px">'+tjSeg(q.h, true)+"</div>"
+    + '<div class="muted" style="font-size:.82rem;margin-bottom:12px">'
+    + (q.h.t === "tanween" ? "التنوين" : "النون الساكنة")+" اللي بالأحمر — حكمها إيه؟</div>"
+    + '<div class="stack">'
+    + q.opts.map(o=>'<button class="btn ghost block tjopt" type="button" data-tjo="'+o+'">'
+        + esc(TJ_AR[o])+"</button>").join("")
+    + "</div>"
+    + '<div id="tjMsg"></div>';
+}
+function renderTajweed(){
+  $("#v-tajweed").innerHTML =
+    '<h2 class="sec">تمرين من المصحف</h2>'
+    + '<div class="tjq" id="tjBox">'+tjQuizHTML()+"</div>"
+    + '<h2 class="sec">أحكام النون الساكنة والتنوين</h2>'
+    + '<div class="muted" style="font-size:.82rem;line-height:1.85;margin-bottom:12px">'
+    + "النون الساكنة هي النون اللي مفيهاش حركة، والتنوين نون ساكنة زيادة في آخر "
+    + "الكلمة بتتنطق ومتكتبش. وليهم خمس أحكام حسب الحرف اللي بعدهم.</div>"
+    + '<div class="stack">'
+    + TJ_RULES.map(r=>'<details class="tjrule"><summary>'+esc(r.n)
+        + '<span class="tag2">'+esc(r.c)+"</span></summary>"
+        + '<div class="tjbody">'+r.d
+        + '<div class="tjl">'+r.L.map(x=>"<span>"+esc(x)+"</span>").join("")+"</div>"
+        + r.m
+        + tjExample(r.id)
+        + "</div></details>").join("")
+    + "</div>"
+    + '<div class="sahnote">ده ملخّص للقواعد المشهورة المتّفق عليها، مكتوب بالعامية '
+    + "عشان يبقى سهل. <b style=\"color:var(--ink)\">شيختك هي المرجع</b> في النطق "
+    + "والتطبيق — الكتابة مش بتغني عن التلقي.<br><br>"
+    + "أما <b style=\"color:var(--ink)\">التمارين</b> فمحسوبة من نص المصحف نفسه: "
+    + "الحكم متحدد من الحرف اللي بعد النون، ومتأكَّد منه كمان من الرسم العثماني "
+    + "(الشدة في الإدغام، والميم الصغيرة في الإقلاب). وأي حالة فيها أدنى شك "
+    + "مترميّة مش متحطّة في التمارين.</div>";
+}
+/* ============================================================ الاختبار
+   تختاري النطاق والنوع والعدد، وكل مرة أسئلة مختلفة تمامًا لأنها
+   بتتسحب عشوائي من المصحف كله أو من النطاق اللي اخترتيه. */
+const EX_TYPES = [["tashabuh","متشابهات"],["recite","تسميع"],["tajweed","تجويد"]];
+function exam(){
+  if(!S.exam) S.exam = {k:"all", n:0, type:"tashabuh", count:10};
+  return S.exam;
+}
+function examKeys(){
+  const x = exam();
+  if(x.k === "surah" && x.n) return ALLK.filter(k=>+k.split(":")[0] === x.n);
+  if(x.k === "juz" && x.n){ const r = JUZR[x.n]; return r ? rangeKeys(r.from, r.to) : []; }
+  if(x.k === "memo") return memoVerses();
+  return ALLK;
+}
+function examLabel(){
+  const x = exam();
+  return x.k === "surah" ? "سورة "+SU[x.n]
+       : x.k === "juz"   ? "الجزء "+ar(x.n)
+       : x.k === "memo"  ? "المحفوظ بتاعي"
+       : "كل المصحف";
+}
+function renderExam(){
+  const x = exam(), last = S.examLast;
+  $("#v-exam").innerHTML =
+    '<h2 class="sec">اختبار جديد</h2>'
+    + '<div class="card" style="margin-bottom:18px">'
+    + '<div class="muted" style="font-size:.84rem;line-height:1.85">حدّدي تختبري نفسك '
+    + "في إيه، وكل مرة هتيجي أسئلة مختلفة.</div>"
+    + '<div class="exlab">تختبري في إيه؟</div>'
+    + '<div class="chips">'+EX_TYPES.map(([v,l])=>
+        '<button class="chip" type="button" data-extype="'+v+'" aria-pressed="'
+        + String(v===x.type)+'">'+l+"</button>").join("")+"</div>"
+    + '<div class="exlab">من فين؟</div>'
+    + '<div class="chips">'+[["all","كل المصحف"],["memo","المحفوظ بتاعي"],
+        ["juz","جزء"],["surah","سورة"]].map(([v,l])=>
+        '<button class="chip" type="button" data-exk="'+v+'" aria-pressed="'
+        + String(v===x.k)+'">'+l+"</button>").join("")+"</div>"
+    + (x.k === "juz"
+        ? '<div class="exrow"><select id="exJuz" aria-label="الجزء">'
+          + Array.from({length:30},(_,i)=>i+1).map(j=>'<option value="'+j+'"'
+              + (j===x.n?" selected":"")+">الجزء "+ar(j)+"</option>").join("")+"</select></div>"
+        : "")
+    + (x.k === "surah"
+        ? '<div class="exrow"><select id="exSur" aria-label="السورة">'
+          + D.surahs.map(z=>'<option value="'+z.n+'"'+(z.n===x.n?" selected":"")+">"
+              + ar(z.n)+". "+esc(z.name)+"</option>").join("")+"</select></div>"
+        : "")
+    + '<div class="exlab">كام سؤال؟</div>'
+    + '<div class="chips">'+[5,10,20].map(c=>
+        '<button class="chip" type="button" data-excount="'+c+'" aria-pressed="'
+        + String(c===x.count)+'">'+ar(c)+"</button>").join("")+"</div>"
+    + '<button class="btn block" type="button" id="exGo" style="margin-top:14px">'
+    + "ابدئي الاختبار</button></div>"
+    + (last ? '<h2 class="sec">آخر نتيجة</h2><div class="exres">'
+        + esc(last.title)+"<br>"+ar(last.right)+" من "+ar(last.total)
+        + " — "+ar(Math.round(last.right/last.total*100))+"٪</div>" : "")
+    + '<div class="sahnote">الاختبار مش بيحرّك مستويات المراجعة — ده قياس لنفسك بس. '
+    + "واللي بتغلطي فيه في المتشابهات بيتسجّل في «أخطائي» عادي.</div>";
+}
+/* ---- اختبار التجويد: أسئلة بعدد، وفي الآخر نتيجة ---- */
+let EXQ = null;
+function examTajweed(n, keys){
+  const set = new Set(keys);
+  const pool = [];
+  for(const r in tjAll())
+    for(const h of tjAll()[r]) if(set.has(h.k)) pool.push({r, h});
+  if(pool.length < 4){ toast("مفيش تمارين تجويد كفاية في النطاق ده.", true); return; }
+  const pick = shuffle(pool.slice()).slice(0, n);
+  EXQ = {list: pick, i: 0, right: 0, done: false};
+  $("#learnTitle").textContent = "اختبار تجويد — "+examLabel();
+  $("#learn").hidden = false;
+  showExamQ();
+}
+function showExamQ(){
+  const b = $("#learnBody"), f = $("#learnFoot");
+  if(!EXQ) return;
+  if(EXQ.i >= EXQ.list.length){
+    const pct = Math.round(EXQ.right / EXQ.list.length * 100);
+    S.examLast = {title:"تجويد — "+examLabel(), right:EXQ.right, total:EXQ.list.length};
+    save();
+    $("#learnBar").style.width = "100%";
+    $("#learnCount").textContent = "";
+    b.innerHTML = '<div class="exdone"><div class="big">'+ar(EXQ.right)+" / "
+      + ar(EXQ.list.length)+'</div><div class="sub">'+ar(pct)+"٪"
+      + (pct>=80 ? " — ما شاء الله 🌿" : pct>=50 ? " — كويس، كمّلي" : " — ذاكري الدروس تاني")
+      + "</div></div>";
+    f.innerHTML = '<button class="btn block" type="button" data-close="learn">تمام</button>';
+    if(pct >= 80) boom();
+    EXQ = null;
+    return;
+  }
+  const q = EXQ.list[EXQ.i];
+  const ids = Object.keys(TJ_AR);
+  const opts = shuffle([q.r, ...shuffle(ids.filter(x=>x!==q.r)).slice(0,3)]);
+  $("#learnCount").textContent = "السؤال "+ar(EXQ.i+1)+" من "+ar(EXQ.list.length);
+  $("#learnBar").style.width = Math.round(EXQ.i/EXQ.list.length*100)+"%";
+  b.innerHTML = '<div class="ref">'+esc(refAr(q.h.k))+"</div>"
+    + '<div class="ayah" style="margin:8px 0 4px">'+tjSeg(q.h, true)+"</div>"
+    + '<div class="muted" style="font-size:.82rem;margin-bottom:12px">'
+    + (q.h.t === "tanween" ? "التنوين" : "النون الساكنة")+" اللي بالأحمر — حكمها إيه؟</div>"
+    + '<div class="stack">'+opts.map(o=>
+        '<button class="btn ghost block exopt" type="button" data-exo="'+o+'">'
+        + esc(TJ_AR[o])+"</button>").join("")+"</div>"
+    + '<div id="exMsg"></div>';
+  f.innerHTML = "";
+}
+function examStart(){
+  const x = exam(), keys = examKeys();
+  if(!keys.length){ toast("النطاق ده فاضي.", true); return; }
+  if(x.type === "tajweed"){ examTajweed(x.count, keys); return; }
+  const set = new Set(keys);
+  if(x.type === "recite"){
+    const ks = shuffle(keys.slice()).slice(0, x.count);
+    startDrill(ks.map(k=>({id:"a:"+k, t:"ayah", v:[k], j:[juzOf(k)],
+                           s:[+k.split(":")[0]]})), "اختبار تسميع — "+examLabel());
+    return;
+  }
+  const list = shuffle(CASES.filter(c=>c.v.some(k=>set.has(k)))).slice(0, x.count);
+  if(!list.length){ toast("مفيش متشابهات في النطاق ده.", true); return; }
+  startDrill(list, "اختبار متشابهات — "+examLabel());
 }
 function renderSahwa(){
   const n = (daySeed() + (S.cheer||0)) % CHEERS.length;
@@ -3041,14 +3466,12 @@ function renderToday(){
       + (ready? "ابدئي المراجعة" : "مفيش مراجعة مستحقة")+"</button>"
     + (ready? "" : '<button class="btn ghost block" id="goFree" type="button">درّبيني بره الحساب</button>')
     + "</div>"
-    + '<h2 class="sec">بتراجعي من فين؟</h2>'
-    + '<details class="dgrp" id="memoBox" style="margin-bottom:16px"><summary>'
-    + esc(memoLabel())+"<small>غيّريها</small></summary>"
-    + '<div style="padding:13px 15px">'
+    + '<h2 class="sec">بتراجعي إيه؟</h2>'
+    + '<div class="memocard" id="memoBox">'
     + memoPickHTML((name,opts,cur)=>'<div class="seg">'+opts.map(([v,l])=>
         '<button type="button" data-set-'+name+'="'+v+'" aria-pressed="'
         + String(String(cur)===String(v))+'">'+l+"</button>").join("")+"</div>")
-    + "</div></details>"
+    + "</div>"
     + '<h2 class="sec">تسميع</h2><div class="card">'
     + '<div class="row" style="justify-content:space-between;gap:12px">'
     + '<div style="flex:1;min-width:0"><b>كمّلي الآية · وإيه اللي بعدها</b>'
@@ -3370,7 +3793,7 @@ document.addEventListener("click", e=>{
     const id=close.dataset.close;
     $("#"+id).hidden=true;
     if(id==="drill"){ Q=null; render(); }
-    if(id==="learn"){ L=null; render(); }
+    if(id==="learn"){ L=null; EXQ=null; render(); }
     return;
   }
   const sc = t.closest("[data-scope]");
@@ -3409,24 +3832,118 @@ document.addEventListener("click", e=>{
            msr.setAttribute("aria-pressed", String(at<0));
            memoTouch(); return; }
 
+  /* ---- الاختبار ---- */
+  const ext = t.closest("[data-extype]");
+  if(ext){ exam().type = ext.dataset.extype; save(); renderExam(); return; }
+  const exk = t.closest("[data-exk]");
+  if(exk){ const v = exk.dataset.exk; exam().k = v;
+           if(v === "juz" && !exam().n) exam().n = 30;
+           if(v === "surah" && !exam().n) exam().n = 1;
+           save(); renderExam(); return; }
+  const exc = t.closest("[data-excount]");
+  if(exc){ exam().count = +exc.dataset.excount; save(); renderExam(); return; }
+  if(t.closest("#exGo")){ examStart(); return; }
+  const exo = t.closest("[data-exo]");
+  if(exo){
+    if(!EXQ) return;
+    const q = EXQ.list[EXQ.i], pick = exo.dataset.exo;
+    if(pick === q.r) EXQ.right++;
+    $$(".exopt").forEach(b=>{
+      const v = b.dataset.exo;
+      if(v === q.r) b.style.cssText = "background:var(--ok-bg);border-color:var(--ok);color:var(--ok)";
+      else if(v === pick) b.style.cssText = "background:var(--no-bg);border-color:var(--no);color:var(--no)";
+      b.disabled = true;
+    });
+    const m = $("#exMsg");
+    if(m) m.innerHTML = '<div class="muted" style="margin-top:12px;line-height:1.9">'
+      + (pick===q.r ? "صح ✓ " : "الصح: <b>"+esc(TJ_AR[q.r])+"</b> — ")
+      + "الحرف اللي بعدها <b>"+esc(q.h.n)+"</b>.</div>";
+    $("#learnFoot").innerHTML = '<button class="btn block" type="button" id="exNext">'
+      + (EXQ.i+1 >= EXQ.list.length ? "النتيجة" : "السؤال اللي بعده")+"</button>";
+    return;
+  }
+  if(t.closest("#exNext")){ EXQ.i++; showExamQ(); return; }
+
+  /* ---- التجويد ---- */
+  if(t.closest("#tjGo")){ tjStart(); return; }
+  const tjo = t.closest("[data-tjo]");
+  if(tjo){
+    if(!TJQ || !TJQ.q || TJQ.done) return;
+    const pick = tjo.dataset.tjo, right = TJQ.q.id;
+    TJQ.done = true;
+    if(pick === right) TJQ.right++; else TJQ.wrong++;
+    $$(".tjopt").forEach(b=>{
+      const v = b.dataset.tjo;
+      if(v === right) b.style.cssText = "background:var(--ok-bg);border-color:var(--ok);color:var(--ok)";
+      else if(v === pick) b.style.cssText = "background:var(--no-bg);border-color:var(--no);color:var(--no)";
+      b.disabled = true;
+    });
+    const sc = $(".tjscore");
+    if(sc) sc.innerHTML = "صح <b>"+ar(TJQ.right)+"</b> · غلط <b>"+ar(TJQ.wrong)+"</b>";
+    const m = $("#tjMsg");
+    if(m) m.innerHTML = '<div class="muted" style="margin-top:12px;line-height:1.9">'
+      + (pick===right ? "صح ✓ " : "الصح: <b>"+esc(TJ_AR[right])+"</b> — ")
+      + "الحرف اللي بعدها <b>"+esc(TJQ.q.h.n)+"</b>.</div>"
+      + '<button class="btn block" type="button" id="tjNext" style="margin-top:10px">'
+      + "سؤال تاني</button>";
+    return;
+  }
+  if(t.closest("#tjNext")){
+    TJQ.q = tjNew(); TJQ.done = false;
+    $("#tjBox").innerHTML = tjQuizHTML();
+    return;
+  }
+
+  /* ---- علاماتك والملاحظات ---- */
+  const mkb = t.closest("[data-mk]");
+  if(mkb){
+    e.preventDefault();
+    const k = mkb.dataset.mk, v = (mkOf(k) + 1) % 4;
+    mkSet(k, v);
+    mkb.className = "mkdot" + (v ? " m"+v : "");
+    const row = mkb.closest(".aitem");
+    if(row){ if(v) row.dataset.mk = String(v); else delete row.dataset.mk; }
+    const lg = $(".legend");
+    if(lg && S.surah) lg.outerHTML = legendHTML(S.surah);
+    toast(v ? MK_AR[v] : "شيلنا العلامة");
+    return;
+  }
+  if(t.closest("#noteAdd")){
+    const v = ($("#noteT").value||"").trim();
+    if(!v){ $("#noteT").focus(); return; }
+    const sn = +$("#noteS").value || 0, an = +$("#noteA").value || 0;
+    const r = sn ? (SU[sn] + (an ? " " + ar(an) : "")) : "";
+    S.myNotes = (S.myNotes||[]).concat([{id:"n"+Date.now().toString(36), t:v, r:r}]);
+    save(); renderNotes(); toast("اتحفظت ✓");
+    return;
+  }
+  const nd = t.closest("[data-ndel]");
+  if(nd){ S.myNotes = (S.myNotes||[]).filter(x=>x.id!==nd.dataset.ndel);
+          save(); renderNotes(); return; }
+
   /* ---- قراءة السورة ---- */
   const rp = t.closest("[data-rep]");
   if(rp){ S.repeatN = +rp.dataset.rep; save();
           $$("[data-rep]").forEach(b=>b.setAttribute("aria-pressed",
             String(+b.dataset.rep===S.repeatN)));
           if(PLAY) seqBar();
+          toast("هتتكرر "+ar(S.repeatN)+(S.repeatN===1?" مرة":" مرات"));
           return; }
   if(t.closest("#seqGo")){
     const ks = $$(".aitem[data-k]").map(e=>e.dataset.k);
     if(ks.length) seqStart(ks, 0);
     return;
   }
+  if(t.closest("[data-pause]")){ audioToggle(); return; }
   if(t.closest("#seqStop")){ seqStop(); return; }
   if(t.closest("#seqNext")){ seqNext(); return; }
 
   /* ---- الصوت ---- */
   const ar_ = t.closest("[data-arec]");
   if(ar_){ recToggle(ar_.dataset.arec); return; }
+  const ayr = t.closest("[data-ayrep]");
+  if(ayr){ e.preventDefault(); seqStart([ayr.dataset.ayrep], 0); return; }
+  if(t.closest("#seqStop2")){ seqStop(); toast("وقفت."); return; }
   const ay = t.closest("[data-ayplay]");
   if(ay){ e.preventDefault(); playAyah(ay.dataset.ayplay, ay); return; }
   const ap = t.closest("[data-aplay]");
@@ -3796,6 +4313,15 @@ document.addEventListener("click", e=>{
   }
 });
 document.addEventListener("change", e=>{
+  if(e.target && (e.target.id === "exJuz" || e.target.id === "exSur")){
+    exam().n = +e.target.value; save(); renderExam(); return;
+  }
+  if(e.target && e.target.id === "lRec"){
+    S.reciter = e.target.value; save();
+    if(L) showLearn();
+    toast("القارئ بقى "+reciterName());
+    return;
+  }
   if(e.target && e.target.id === "vSur"){ vSur = +e.target.value; vAyah = 1; renderVoice(); return; }
   if(e.target && e.target.id === "vAyah"){ vAyah = +e.target.value; renderVoice(); return; }
   const up = e.target.closest ? e.target.closest("[data-aup]") : null;
