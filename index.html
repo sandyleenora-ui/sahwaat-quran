@@ -804,10 +804,23 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
 .ncard .nx{background:none;border:0;color:var(--ink3);cursor:pointer;font:inherit;
   font-size:1.05rem;padding:2px 5px;line-height:1}
 /* ---- شريط التابات بيتسحب لما يزيد ---- */
-.tabs .wrap{display:flex;overflow-x:auto;scrollbar-width:none;scroll-snap-type:x proximity}
+.tabs .wrap{display:flex;overflow-x:auto;scrollbar-width:none}
 .tabs .wrap::-webkit-scrollbar{display:none}
-.tabs button{flex:0 0 auto;min-width:68px;scroll-snap-align:center;font-size:.67rem}
+.tabs button{flex:0 0 auto;min-width:62px;font-size:.65rem}
 .tabs button svg{width:21px;height:21px}
+/* علامة إن في تابات تانية ورا الحافة — من غيرها محدش بيعرف إن الشريط بيتسحب */
+.tabs{position:fixed}
+.tabs .edge{position:absolute;top:0;bottom:0;width:30px;pointer-events:none;z-index:3;
+  opacity:0;transition:opacity .18s}
+.tabs .edge.on{opacity:1}
+.tabs .edge.s{inset-inline-start:0;
+  background:linear-gradient(to var(--fadeA,left),var(--card),rgba(0,0,0,0))}
+.tabs .edge.e{inset-inline-end:0;
+  background:linear-gradient(to var(--fadeB,right),var(--card),rgba(0,0,0,0))}
+.tabs .edge .chev{position:absolute;top:50%;transform:translateY(-50%);width:13px;height:13px;
+  stroke:var(--ink3);fill:none;stroke-width:2.4;opacity:.8}
+.tabs .edge.s .chev{inset-inline-start:3px}
+.tabs .edge.e .chev{inset-inline-end:3px}
 /* ---- التجويد ---- */
 .tjrule{border:1px solid var(--line);border-radius:14px;background:var(--card);overflow:hidden}
 .tjrule>summary{list-style:none;cursor:pointer;padding:13px 15px;display:flex;gap:10px;
@@ -874,6 +887,8 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
 <div class="toast" id="toast" hidden></div>
 
 <nav class="tabs" aria-label="التنقل">
+  <span class="edge s" id="edgeS" aria-hidden="true"><svg class="chev" viewBox="0 0 24 24"><path d="m15 5-7 7 7 7"/></svg></span>
+  <span class="edge e" id="edgeE" aria-hidden="true"><svg class="chev" viewBox="0 0 24 24"><path d="m9 5 7 7-7 7"/></svg></span>
   <div class="wrap">
     <button type="button" data-tab="memo" aria-selected="true">
       <svg viewBox="0 0 24 24"><path d="m3 6 6-2.5 6 2.5 6-2.5v15L15 21l-6-2.5L3 21zM9 3.5v15M15 6v15"/></svg>
@@ -2344,6 +2359,32 @@ function surahMapHTML(n){
     + pagesHTML(n);
 }
 
+/* ---- شريط التابات: نوري علامة إن في تابات تانية ورا الحافة ---- */
+function tabEdges(){
+  const w = $(".tabs .wrap"), bs = $$(".tabs button");
+  const s = $("#edgeS"), e = $("#edgeE");
+  if(!w || !bs.length || !s || !e) return;
+  const r = w.getBoundingClientRect();
+  const first = bs[0].getBoundingClientRect();
+  const last  = bs[bs.length-1].getBoundingClientRect();
+  /* في العربي أول زرار ناحية اليمين وآخر زرار ناحية الشمال */
+  s.classList.toggle("on", first.right > r.right + 2);
+  e.classList.toggle("on", last.left  < r.left  - 2);
+}
+function tabShow(){
+  const w = $(".tabs .wrap"), b = $('.tabs button[aria-selected="true"]');
+  if(w && b){
+    const wr = w.getBoundingClientRect(), br = b.getBoundingClientRect();
+    const d = (br.left + br.width/2) - (wr.left + wr.width/2);
+    if(Math.abs(d) > 4){
+      try{ w.scrollBy({left:d, behavior:"smooth"}); }
+      catch(x){ w.scrollLeft += d; }
+    }
+  }
+  tabEdges();
+  [120, 400, 800].forEach(t=>setTimeout(tabEdges, t));
+}
+
 /* ------------------------------------------------------------------ views */
 let tab="memo", browseType="similar", browsePage=1, searchScope="all", pickOpen=false;
 function renderSkeleton(){
@@ -2355,6 +2396,7 @@ function render(){
   rollDay();
   $("#scopeBtn").textContent = scopeLabel();
   $$(".tabs button").forEach(b=>b.setAttribute("aria-selected", String(b.dataset.tab===tab)));
+  tabShow();
   $("#v-today").hidden = tab!=="today";
   $("#v-browse").hidden = tab!=="browse";
   $("#v-memo").hidden = tab!=="memo";
@@ -4367,6 +4409,12 @@ document.addEventListener("keydown", e=>{
     else if(!$("#setSheet").hidden) $("#setSheet").hidden=true;
   }
 });
+(function(){
+  const w = $(".tabs .wrap");
+  if(w) w.addEventListener("scroll", tabEdges, {passive:true});
+  addEventListener("resize", tabEdges);
+  setTimeout(tabEdges, 500);
+})();
 /* ---- جسر صغير لتاب الحلقة. الموقع الأصلي ما اتغيّرش. ---- */
 window.SAHWA = {
   get S(){ return S; },
