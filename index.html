@@ -23,6 +23,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Amiri+Quran&family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&display=swap">
 
+<link rel="stylesheet" href="halaqa.css">
 <style>
 /* Layout: one reading column, sticky scope bar on top, tab bar pinned to the bottom.
    Palette taken from a printed mushaf: greenish paper, ink, a single emerald rule,
@@ -866,6 +867,7 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
   <section id="v-notes" hidden></section>
   <section id="v-tajweed" hidden></section>
   <section id="v-exam" hidden></section>
+  <section id="v-halaqa" hidden></section>
 </main>
 
 <audio id="player" preload="none" playsinline></audio>
@@ -903,6 +905,9 @@ mark{background:var(--m1b);color:var(--m1);border-radius:4px;padding:0 3px}
     <button type="button" data-tab="exam" aria-selected="false">
       <svg viewBox="0 0 24 24"><path d="M7 3.5h10a1 1 0 0 1 1 1V20l-6-2.8L6 20V4.5a1 1 0 0 1 1-1z"/><path d="M9.5 8.5h5M9.5 12h3"/></svg>
       اختبار</button>
+    <button type="button" data-tab="halaqa" aria-selected="false">
+      <svg viewBox="0 0 24 24"><circle cx="12" cy="7.5" r="2.6"/><circle cx="5.5" cy="15" r="2"/><circle cx="18.5" cy="15" r="2"/><path d="M8.6 9.9 7 12.8m8.4-2.9L17 12.8M8 16.6h8"/></svg>
+      حلقتي</button>
   </div>
 </nav>
 
@@ -2360,6 +2365,7 @@ function render(){
   $("#v-notes").hidden = tab!=="notes";
   $("#v-tajweed").hidden = tab!=="tajweed";
   $("#v-exam").hidden = tab!=="exam";
+  $("#v-halaqa").hidden = tab!=="halaqa";
   if(tab==="today") renderToday();
   if(tab==="browse") renderBrowse();
   if(tab==="memo") renderMemo();
@@ -2370,6 +2376,7 @@ function render(){
   if(tab==="notes") renderNotes();
   if(tab==="tajweed") renderTajweed();
   if(tab==="exam") renderExam();
+  if(tab==="halaqa" && window.renderHalaqa) window.renderHalaqa();
 }
 function renderMemo(){
   $("#v-memo").innerHTML = S.surah ? surahMapHTML(S.surah)
@@ -4360,8 +4367,19 @@ document.addEventListener("keydown", e=>{
     else if(!$("#setSheet").hidden) $("#setSheet").hidden=true;
   }
 });
+/* ---- جسر صغير لتاب الحلقة. الموقع الأصلي ما اتغيّرش. ---- */
+window.SAHWA = {
+  get S(){ return S; },
+  get tab(){ return tab; }, set tab(v){ tab = v; },
+  render: render, save: save, toast: toast,
+  ar: ar, esc: esc, SU: SU, refAr: refAr
+};
+
 boot();
 </script>
+
+<script src="config.js"></script>
+<script type="module" src="halaqa.js"></script>
 
 <script>
 if("serviceWorker" in navigator){

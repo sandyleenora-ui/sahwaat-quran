@@ -1,8 +1,8 @@
 /* كاش بسيط: التطبيق يفتح من غير نت بعد أول مرة. */
-var V = "mushaf-0647609c05";
+var V = "mushaf-3ef9ed9d42";
 var ASSETS = ["./", "./index.html", "./data.json", "./manifest.webmanifest",
               "./icon-192.png", "./icon-512.png", "./icon-512-maskable.png",
-              "./apple-touch-icon.png", "./favicon-32.png"];
+              "./apple-touch-icon.png", "./favicon-32.png", "./halaqa.css", "./halaqa.js"];
 
 self.addEventListener("install", function(e){
   e.waitUntil(caches.open(V).then(function(c){ return c.addAll(ASSETS); })
